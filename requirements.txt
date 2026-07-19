@@ -8,6 +8,7 @@ python-dotenv    # loads ODDS_API_KEY etc. from a local .env (never committed)
 # --- data handling ---
 pandas
 numpy
+openpyxl         # reads SBR historical odds .xlsx files
 
 # --- modeling (specific algorithm(s) TBD with user, see src/models) ---
 scikit-learn
