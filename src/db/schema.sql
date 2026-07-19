@@ -151,6 +151,26 @@ CREATE TABLE IF NOT EXISTS line_movement_signals (
     notes                   TEXT
 );
 
+-- Public-sentiment reads from every free cross-check source: covers.com
+-- consensus (real bet %) + forum tally, Scores & Odds and VSIN (both give
+-- ticket % AND money % -- the bets-vs-money divergence is a genuine sharp
+-- tell, not an approximation), Reddit forum tally, Wikipedia pageview
+-- attention, and Polymarket/Kalshi's real-money implied %. One row per
+-- source per snapshot so disagreement between sources is visible rather
+-- than collapsed into a single number.
+CREATE TABLE IF NOT EXISTS public_sentiment_snapshots (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    game_id         TEXT NOT NULL REFERENCES games(game_id),
+    source          TEXT NOT NULL,   -- 'covers_consensus' | 'covers_forum' |
+                                      -- 'scoresandodds_bets' | 'scoresandodds_money' |
+                                      -- 'vsin_bets' | 'vsin_money' | 'reddit' |
+                                      -- 'wiki' | 'polymarket_consensus' | 'kalshi_consensus'
+    snapshot_time   TEXT NOT NULL,
+    value_type      TEXT NOT NULL,   -- 'pct' | 'mention_count' | 'pageviews'
+    home_value      REAL,
+    away_value      REAL
+);
+
 -- Model predictions, versioned so backtests are comparable across changes.
 -- home_win_prob/edge come purely from our own Stats+Consistency signals;
 -- market_home_implied_prob is stored alongside only for ROI calculation

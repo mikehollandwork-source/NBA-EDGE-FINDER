@@ -22,10 +22,17 @@ waiting on real data to design against.
 This Claude Code Remote environment's egress policy denies outbound
 connections to every data source this project needs. Confirmed via the
 proxy status endpoint (403 policy denial on each host). Nothing here can
-be tested end-to-end until the environment's network policy is updated
-to allow: `stats.nba.com`, `balldontlie.io` (or `api.balldontlie.io`),
+be tested end-to-end from this session — but note the GitHub Actions
+workflow runs on GitHub's own infrastructure and is NOT behind this
+block, so the hourly job should work for real regardless (see
+"Automation"). Hosts involved, if you do want to unblock this session
+too: `stats.nba.com`, `balldontlie.io` (or `api.balldontlie.io`),
 `basketball-reference.com`, `the-odds-api.com`, `polymarket.com`
-(`gamma-api.polymarket.com`, `clob.polymarket.com`). See
+(`gamma-api.polymarket.com`, `clob.polymarket.com`), `espn.com`
+(`site.api.espn.com`, `sports.core.api.espn.com`), `pinnacle.com`
+(`guest.api.arcadia.pinnacle.com`), `kalshi.com`
+(`api.elections.kalshi.com`), `covers.com`, `scoresandodds.com`,
+`vsin.com` (`data.vsin.com`), `reddit.com`, `wikimedia.org`. See
 https://code.claude.com/docs/en/claude-code-on-the-web for how
 environment network policy is configured.
 
@@ -36,15 +43,30 @@ responses** — each file's docstring flags the specific assumptions
 
 ## Design decisions locked in
 
-- **Data sources (cross-checked against each other):**
+- **Stat sources (cross-checked against each other):**
   - [`nba_api`](https://github.com/swar/nba_api) — stats.nba.com, primary source for detailed box scores / advanced stats
   - [balldontlie.io](https://www.balldontlie.io/) — free REST API, reliability cross-check
   - Basketball-Reference (scraped) — historical depth, third cross-check
-  - [SportsbookReviewsOnline](https://www.sportsbookreviewsonline.com/) historical odds files — free, manually downloaded, used for **backtesting** (already has opening + closing lines)
-  - [The Odds API](https://the-odds-api.com/) free tier — polled going forward to build our own line-movement history
-  - [Polymarket](https://polymarket.com/) — real-money-weighted price, used as an independent check and for in-game "live money" tracking, when a market exists for the game
+- **Market/odds sources, all free and no signup except where noted:**
+  - [ESPN](https://www.espn.com/) hidden scoreboard/odds API — real open→current moneyline for nearly every game, no key. Primary line source.
+  - [Pinnacle](https://www.pinnacle.com/) guest API — the "sharp book" reference line.
+  - [The Odds API](https://the-odds-api.com/) free tier — optional now that ESPN covers the same ground for free; only runs if `ODDS_API_KEY` is set.
+  - [SportsbookReviewsOnline](https://www.sportsbookreviewsonline.com/) historical odds files — free, manually downloaded, used for **backtesting** (already has opening + closing lines).
+  - [Polymarket](https://polymarket.com/) and [Kalshi](https://kalshi.com/) — two independent real-money prediction markets, used as a cross-check on book prices and for in-game "live money" tracking, when a market exists for the game.
+- **Public-sentiment sources, for cross-checking "who the public/sharp money is on" (raw data only — see "Pick logic" below):**
+  - [covers.com](https://www.covers.com/) — published consensus % + betting-forum team-mention tally.
+  - [Scores & Odds](https://www.scoresandodds.com/) and [VSIN](https://www.vsin.com/) — both publish **both** ticket share (% of bets) and dollar share (% of money) per game; the bets-vs-money divergence is a real sharp-money tell, not an approximation.
+  - Reddit (r/nba + betting subreddits) — second forum-mention tally, same technique as covers'.
+  - Wikipedia pageviews — team-attention proxy; fully backtestable (real history via the Wikimedia API), unlike the other sentiment sources.
 - **Storage:** SQLite (free, zero setup) — `src/db/schema.sql`
-- **Workflow:** reusable Python package (`src/`) + notebooks for research/inspection + a daily CLI pipeline for automation. No automated bet placement — the system only recommends.
+- **Workflow:** reusable Python package (`src/`) + notebooks for research/inspection + an hourly CLI pipeline for automation. No automated bet placement — the system only recommends.
+
+Most of the market/public-sentiment sources above were ported from a
+sibling MLB project (`mikehollandwork-source/Sports`) that has already
+run these scrapers live and fixed their selectors/endpoints against real
+responses — see each module's docstring for what's a direct port vs. an
+NBA-specific best-effort guess (team names/URLs swapped, unverified until
+the first live run here).
 
 ### Model design
 
@@ -73,11 +95,25 @@ responses** — each file's docstring flags the specific assumptions
   actually hit the win condition). Combined via a weighted blend
   (starting ~60% Stats / 40% Consistency), with the split itself tuned
   by backtest results.
-- **Sharp money / line movement:** no free source publishes real
-  bet-ticket percentages, so this is approximated from line movement
-  itself (reverse line movement off the opening favorite, steam moves,
-  and the Polymarket-vs-book gap) — see `src/market/line_movement.py`
-  docstring for the exact caveats.
+- **Sharp money / line movement:** `src/market/line_movement.py`'s
+  reverse-line-movement/steam-move detection is still an approximation
+  (no free source publishes real bet-ticket percentages *from a
+  sportsbook's own moneyline data*). But Scores & Odds and VSIN
+  (`public_odds_sources.py`) DO publish real ticket% vs money% splits —
+  that's a genuine sharp-vs-public signal, stored per-source in
+  `public_sentiment_snapshots` for the pick logic to use directly rather
+  than inferred from price movement alone.
+
+### Pick logic — deliberately not built here
+
+Everything above is data collection and raw signal storage. The actual
+decision logic (how Stats/Consistency/public-sentiment signals combine
+into a pick) is being designed separately and is NOT ported from the MLB
+sibling project — that project's decision engine (`analysis.py`) is built
+around baseball-specific stats (FIP, wOBA) and a "fade the public" thesis
+that doesn't apply to this project's team-vs-team edge design.
+`src/models/win_predictor.py` stays an empty stub until that design is
+finalized.
 - **Odds timestamps**: the hourly job seeds `games` rows for the next 7
   days (via balldontlie, which returns unplayed games) specifically so
   early lines have somewhere to attach — every hourly poll writes a new
@@ -97,9 +133,12 @@ when something actually changed since the last run.
 **Two setup steps only you can do:**
 
 1. **GitHub Actions secrets** (repo Settings → Secrets and variables →
-   Actions): add `ODDS_API_KEY`, `BALLDONTLIE_API_KEY`,
-   `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Don't share these values in
-   chat or commit them anywhere — they only need to exist as secrets.
+   Actions): `BALLDONTLIE_API_KEY`, `TELEGRAM_BOT_TOKEN`,
+   `TELEGRAM_CHAT_ID` are what the pipeline actually needs today.
+   `ODDS_API_KEY` is optional (ESPN/Pinnacle cover odds for free now).
+   `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET` are optional (Reddit tally
+   degrades to zero without them). Don't share these values in chat or
+   commit them anywhere — they only need to exist as secrets.
 2. **Telegram bot**: message `@BotFather` on Telegram, `/newbot`, follow
    the prompts for a bot token. Then message your new bot anything and
    visit `https://api.telegram.org/bot<TOKEN>/getUpdates` to find your
@@ -120,8 +159,14 @@ time — not the price live when the prediction was actually generated.
 
 ```
 src/
-  ingestion/       one module per data source (nba_api, balldontlie, bref,
-                   sbr_historical_odds, odds_api, polymarket)
+  ingestion/       one module per data source:
+                     nba_api, balldontlie, basketball_reference  (stats)
+                     espn, pinnacle, odds_api, sbr_historical_odds,
+                       polymarket, kalshi                        (odds/markets)
+                     covers, public_odds_sources (S&O + VSIN),
+                       reddit, wiki                               (public sentiment)
+                     public_sentiment_collector                   (orchestrates the above)
+                     nba_teams                                    (shared abbr/name lookup)
   reconciliation/  cross-checks stats across sources, logs disagreements
   market/          vig calc, line-movement/sharp-money analysis
   tracking/        settles predictions, computes the units/win-loss rollup
