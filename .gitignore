@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# local database
+*.db
+*.sqlite
+*.sqlite3
+
+# raw/processed data pulled from external sources (regenerable, not committed)
+data/raw/*
+data/processed/*
+data/odds/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/odds/.gitkeep
+
+.ipynb_checkpoints/
+.pytest_cache/

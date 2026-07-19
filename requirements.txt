@@ -1,0 +1,21 @@
+# --- data ingestion ---
+nba_api          # free wrapper around stats.nba.com
+requests
+beautifulsoup4   # for Basketball-Reference scraping
+lxml
+python-dotenv    # loads ODDS_API_KEY etc. from a local .env (never committed)
+
+# --- data handling ---
+pandas
+numpy
+
+# --- modeling (specific algorithm(s) TBD with user, see src/models) ---
+scikit-learn
+
+# --- research / exploration ---
+jupyter
+ipykernel
+matplotlib
+
+# --- testing ---
+pytest
