@@ -16,7 +16,6 @@ REQUEST_DELAY_SECONDS rather than removing the delay.
 """
 
 import time
-from datetime import datetime
 
 from src.db.connection import get_connection
 
@@ -28,8 +27,12 @@ def _sleep():
     time.sleep(REQUEST_DELAY_SECONDS)
 
 
-def fetch_season_team_game_log(season: str):
+def fetch_season_team_game_log(season: str, date_from: str = None, date_to: str = None):
     """Return one row per team per game for the season, e.g. season='2025-26'.
+
+    date_from/date_to are 'MM/DD/YYYY' strings (nba_api/stats.nba.com's
+    expected format) -- pass both to limit to a recent window instead of
+    pulling the whole season, which is what the hourly job does.
 
     Uses LeagueGameFinder, which is the standard way to bulk-pull a
     season's worth of team game logs from stats.nba.com in one call
@@ -41,6 +44,8 @@ def fetch_season_team_game_log(season: str):
         season_nullable=season,
         league_id_nullable="00",
         season_type_nullable="Regular Season",
+        date_from_nullable=date_from or "",
+        date_to_nullable=date_to or "",
     )
     _sleep()
     return finder.get_data_frames()[0]
@@ -70,54 +75,56 @@ def fetch_game_boxscore_advanced(game_id: str):
     return frames[0], frames[1]
 
 
-def persist_season(season: str, db_path=None):
-    """Pull a full season's team game log + per-game box scores and
-    write games / team_game_stats / player_game_stats rows.
+def persist_season(season: str, date_from: str = None, date_to: str = None, db_path=None):
+    """Pull team game logs (optionally limited to a date window) and
+    write games / team_game_stats rows.
 
-    This iterates one boxscore call per game (traditional + advanced),
-    so a full season (~1,230 games) means ~2,460+ calls to stats.nba.com
-    at REQUEST_DELAY_SECONDS apart -- expect this to take a while and to
-    need resuming/retrying on transient failures once run for real.
+    Full-season calls (~1,230 games) are meant for a one-time backfill;
+    the hourly job should pass date_from/date_to for a short recent
+    window instead, since LeagueGameFinder itself is one call regardless
+    of range -- it's the per-game boxscore calls that scale with volume.
     """
     conn = get_connection(db_path) if db_path else get_connection()
-    team_log = fetch_season_team_game_log(season)
+    team_log = fetch_season_team_game_log(season, date_from, date_to)
 
-    seen_game_ids = set()
-    for _, row in team_log.iterrows():
-        game_id = row["GAME_ID"]
-        is_home = "vs." in row["MATCHUP"]
+    # LeagueGameFinder gives one row per team per game (two rows share a
+    # game_id) -- group them so home/away and both scores can be set
+    # together rather than inserting a half-populated game row per row.
+    for game_id, game_rows in team_log.groupby("GAME_ID"):
+        if len(game_rows) != 2:
+            continue  # incomplete pair (e.g. postponed game); skip for now
 
-        if game_id not in seen_game_ids:
-            seen_game_ids.add(game_id)
-            home_team = row["TEAM_ABBREVIATION"] if is_home else None
-            away_team = None if is_home else row["TEAM_ABBREVIATION"]
-            conn.execute(
-                """INSERT INTO games (game_id, season, game_date, home_team,
-                       away_team, home_score, away_score, status)
-                   VALUES (?, ?, ?, ?, ?, NULL, NULL, 'final')
-                   ON CONFLICT(game_id) DO NOTHING""",
-                (game_id, season, row["GAME_DATE"], home_team, away_team),
-            )
-
-        # NOTE: home/away team + final score need reconciling across the
-        # two rows LeagueGameFinder gives per game (one per team) -- left
-        # as a follow-up pass once this runs against live data, since the
-        # exact merge logic is easier to get right with real rows in hand.
+        home_row = next(r for _, r in game_rows.iterrows() if "vs." in r["MATCHUP"])
+        away_row = next(r for _, r in game_rows.iterrows() if "@" in r["MATCHUP"])
 
         conn.execute(
-            """INSERT INTO team_game_stats
-               (game_id, team, source, is_home, points, fgm, fga, fg3m, fg3a,
-                ftm, fta, oreb, dreb, reb, ast, stl, blk, tov, pf)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-               ON CONFLICT(game_id, team, source) DO NOTHING""",
-            (
-                game_id, row["TEAM_ABBREVIATION"], SOURCE_NAME, int(is_home),
-                row.get("PTS"), row.get("FGM"), row.get("FGA"),
-                row.get("FG3M"), row.get("FG3A"), row.get("FTM"), row.get("FTA"),
-                row.get("OREB"), row.get("DREB"), row.get("REB"), row.get("AST"),
-                row.get("STL"), row.get("BLK"), row.get("TOV"), row.get("PF"),
-            ),
+            """INSERT INTO games (game_id, season, game_date, home_team,
+                   away_team, home_score, away_score, status)
+               VALUES (?, ?, ?, ?, ?, ?, ?, 'final')
+               ON CONFLICT(game_id) DO UPDATE SET
+                   home_score = excluded.home_score,
+                   away_score = excluded.away_score,
+                   status = excluded.status""",
+            (game_id, season, home_row["GAME_DATE"],
+             home_row["TEAM_ABBREVIATION"], away_row["TEAM_ABBREVIATION"],
+             home_row.get("PTS"), away_row.get("PTS")),
         )
+
+        for row, is_home in ((home_row, 1), (away_row, 0)):
+            conn.execute(
+                """INSERT INTO team_game_stats
+                   (game_id, team, source, is_home, points, fgm, fga, fg3m, fg3a,
+                    ftm, fta, oreb, dreb, reb, ast, stl, blk, tov, pf)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                   ON CONFLICT(game_id, team, source) DO NOTHING""",
+                (
+                    game_id, row["TEAM_ABBREVIATION"], SOURCE_NAME, is_home,
+                    row.get("PTS"), row.get("FGM"), row.get("FGA"),
+                    row.get("FG3M"), row.get("FG3A"), row.get("FTM"), row.get("FTA"),
+                    row.get("OREB"), row.get("DREB"), row.get("REB"), row.get("AST"),
+                    row.get("STL"), row.get("BLK"), row.get("TOV"), row.get("PF"),
+                ),
+            )
 
     conn.commit()
     conn.close()

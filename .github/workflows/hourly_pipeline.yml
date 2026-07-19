@@ -1,0 +1,46 @@
+name: Hourly Pipeline
+
+on:
+  schedule:
+    # Every hour. GitHub anchors this to the minute the workflow file
+    # was added rather than exactly :00, and can delay a few minutes
+    # under load -- fine for our purposes.
+    - cron: "0 * * * *"
+  workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write  # needed to commit data/nba_edge_finder.db back to the repo
+
+concurrency:
+  group: hourly-pipeline
+  cancel-in-progress: false  # let a run finish rather than overlapping the next
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run hourly pipeline
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m src.cli.hourly_pipeline
+
+      - name: Commit updated database
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/nba_edge_finder.db
+          git diff --staged --quiet || git commit -m "Hourly data update [skip ci]"
+          git push

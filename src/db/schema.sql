@@ -183,3 +183,23 @@ CREATE TABLE IF NOT EXISTS backtest_runs (
     calibration_error   REAL,
     notes               TEXT
 );
+
+-- One row per settled (completed + predicted) game, for the live
+-- units/win-loss record reported to Telegram. Default staking is flat
+-- 1 unit per pick (simplest convention; revisit if you want edge-sized
+-- staking later), settled against the closing line available at
+-- settlement time (also a default -- revisit once we're tracking odds
+-- at the actual moment a prediction was generated).
+CREATE TABLE IF NOT EXISTS bet_record (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    game_id             TEXT NOT NULL REFERENCES games(game_id),
+    game_date           TEXT NOT NULL,
+    model_version       TEXT NOT NULL,
+    predicted_winner    TEXT NOT NULL,
+    actual_winner       TEXT,
+    result              TEXT NOT NULL,   -- 'win' | 'loss' | 'push' | 'pending'
+    units_risked        REAL NOT NULL,
+    units_won           REAL,            -- negative for a loss, null while pending
+    settled_at          TEXT,
+    UNIQUE(game_id, model_version)
+);

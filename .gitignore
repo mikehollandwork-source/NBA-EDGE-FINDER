@@ -4,10 +4,15 @@ __pycache__/
 venv/
 .env
 
-# local database
+# local database -- data/nba_edge_finder.db is committed on purpose by
+# the hourly GitHub Actions workflow (simplest free persistence between
+# ephemeral runner runs, see README "Automation"); ignore any OTHER
+# local db files (e.g. one you create for local testing under a
+# different name) so those don't get committed by accident.
 *.db
 *.sqlite
 *.sqlite3
+!data/nba_edge_finder.db
 
 # raw/processed data pulled from external sources (regenerable, not committed)
 data/raw/*

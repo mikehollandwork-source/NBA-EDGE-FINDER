@@ -4,13 +4,18 @@ A system to predict NBA game winners from recent team/player performance,
 acting as our own lines-maker rather than comparing against a sportsbook.
 Backtested against the 2025-26 season until results hit target.
 
-Status: **ingestion + market-analysis code written, not yet run against
-live data.** This environment's network policy currently blocks every
-external host this project needs (stats.nba.com, balldontlie.io,
+Status: **ingestion, market-analysis, and hourly automation code
+written, not yet run against live data.** The Claude Code session that
+built this is behind a network policy that blocks every external host
+the project needs (stats.nba.com, balldontlie.io,
 basketball-reference.com, the-odds-api.com, polymarket.com) — see
-"Known blocker" below. Feature engineering, the model, and backtesting
-(`src/features`, `src/models/win_predictor.py`, `src/backtest`) are still
-empty stubs, waiting on real data to design against.
+"Known blocker" below. The GitHub Actions workflow itself runs on
+GitHub's own infrastructure and is NOT behind that block, so once the
+two setup steps in "Automation" below are done, the hourly job should
+run for real even though it couldn't be tested from the Claude session.
+Feature engineering, the model, and backtesting (`src/features`,
+`src/models/win_predictor.py`, `src/backtest`) are still empty stubs,
+waiting on real data to design against.
 
 ## Known blocker
 
@@ -74,6 +79,37 @@ responses** — each file's docstring flags the specific assumptions
   and the Polymarket-vs-book gap) — see `src/market/line_movement.py`
   docstring for the exact caveats.
 
+## Automation
+
+A GitHub Actions workflow (`.github/workflows/hourly_pipeline.yml`) runs
+`src/cli/hourly_pipeline.py` every hour: pulls the last few days of
+results, cross-checks sources, snapshots odds + Polymarket, settles any
+completed predictions against the record, and sends a Telegram summary
+(today / yesterday / this week / this month / YTD, win-loss and units)
+when something actually changed since the last run.
+
+**Two setup steps only you can do:**
+
+1. **GitHub Actions secrets** (repo Settings → Secrets and variables →
+   Actions): add `ODDS_API_KEY`, `BALLDONTLIE_API_KEY`,
+   `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Don't share these values in
+   chat or commit them anywhere — they only need to exist as secrets.
+2. **Telegram bot**: message `@BotFather` on Telegram, `/newbot`, follow
+   the prompts for a bot token. Then message your new bot anything and
+   visit `https://api.telegram.org/bot<TOKEN>/getUpdates` to find your
+   chat_id in the response.
+
+**Persistence default**: since GitHub Actions runners are wiped after
+every run, the workflow commits `data/nba_edge_finder.db` back to the
+repo each time (simplest free option — revisit if the binary diffs
+become annoying, e.g. by switching to committing raw CSVs and rebuilding
+the DB each run instead).
+
+**Staking/settlement defaults** (both easy to change in
+`src/tracking/record.py` once you have an opinion): flat 1 unit per
+pick, settled against the closing moneyline available at settlement
+time — not the price live when the prediction was actually generated.
+
 ## Project layout
 
 ```
@@ -82,12 +118,14 @@ src/
                    sbr_historical_odds, odds_api, polymarket)
   reconciliation/  cross-checks stats across sources, logs disagreements
   market/          vig calc, line-movement/sharp-money analysis
+  tracking/        settles predictions, computes the units/win-loss rollup
+  notify/          Telegram summary sender
   features/        rolling team/player performance features (empty stub)
   models/          win-probability model (empty stub) + team-vs-team edge
   backtest/        walk-forward backtest against past seasons (empty stub)
   db/              SQLite schema + connection helper
-  cli/             daily automation entry point (empty stub)
-data/              raw/processed data + odds snapshots (gitignored, regenerable)
+  cli/             hourly automation entry point (runs the full pipeline)
+data/              raw/processed data + odds snapshots + the committed db
 notebooks/         exploration and backtest-result inspection
 tests/
 ```

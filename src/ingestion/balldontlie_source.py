@@ -32,25 +32,33 @@ def _headers():
     return {"Authorization": api_key} if api_key else {}
 
 
-def fetch_games(season: int, page: int = 1, per_page: int = 100):
-    """Return one page of games for a season, e.g. season=2025 for 2025-26."""
+def fetch_games(season: int, page: int = 1, per_page: int = 100,
+                 start_date: str = None, end_date: str = None):
+    """Return one page of games for a season, e.g. season=2025 for 2025-26.
+
+    start_date/end_date ('YYYY-MM-DD') limit to a recent window instead
+    of the whole season -- what the hourly job uses.
+    """
+    params = {"seasons[]": season, "page": page, "per_page": per_page}
+    if start_date:
+        params["start_date"] = start_date
+    if end_date:
+        params["end_date"] = end_date
+
     resp = requests.get(
-        f"{BASE_URL}/games",
-        params={"seasons[]": season, "page": page, "per_page": per_page},
-        headers=_headers(),
-        timeout=15,
+        f"{BASE_URL}/games", params=params, headers=_headers(), timeout=15,
     )
     resp.raise_for_status()
     time.sleep(REQUEST_DELAY_SECONDS)
     return resp.json()
 
 
-def fetch_all_games(season: int):
-    """Paginate through fetch_games() and return the full season's games."""
+def fetch_all_games(season: int, start_date: str = None, end_date: str = None):
+    """Paginate through fetch_games() and return all matching games."""
     games = []
     page = 1
     while True:
-        data = fetch_games(season, page=page)
+        data = fetch_games(season, page=page, start_date=start_date, end_date=end_date)
         games.extend(data["data"])
         meta = data.get("meta", {})
         if not meta.get("next_page"):
@@ -72,24 +80,40 @@ def fetch_game_stats(game_id: int):
     return resp.json()["data"]
 
 
-def persist_season(season: int, db_path=None):
-    """Pull a season's games + player box scores and write games /
-    team_game_stats (aggregated from player rows) / player_game_stats.
+def persist_season(season: int, start_date: str = None, end_date: str = None, db_path=None):
+    """Pull games + player box scores (optionally limited to a recent
+    date window) and write games / player_game_stats rows.
     """
     conn = get_connection(db_path) if db_path else get_connection()
-    games = fetch_all_games(season)
+    games = fetch_all_games(season, start_date=start_date, end_date=end_date)
 
     for g in games:
-        game_id = str(g["id"])
         home_team = g["home_team"]["abbreviation"]
         away_team = g["visitor_team"]["abbreviation"]
+        game_date = g["date"][:10]  # API returns a full timestamp
+
+        # balldontlie's own numeric id is NOT the same id nba_api uses --
+        # match against an existing row by (date, home_team, away_team)
+        # first; only mint a new (prefixed, so it can't collide with
+        # nba.com's own id format) game_id if nothing else created this
+        # game yet.
+        existing = conn.execute(
+            """SELECT game_id FROM games
+               WHERE game_date = ? AND home_team = ? AND away_team = ?""",
+            (game_date, home_team, away_team),
+        ).fetchone()
+        game_id = existing["game_id"] if existing else f"bdl_{g['id']}"
+
         conn.execute(
             """INSERT INTO games (game_id, season, game_date, home_team,
                    away_team, home_score, away_score, status)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-               ON CONFLICT(game_id) DO NOTHING""",
+               ON CONFLICT(game_id) DO UPDATE SET
+                   home_score = excluded.home_score,
+                   away_score = excluded.away_score,
+                   status = excluded.status""",
             (
-                game_id, f"{season}-{str(season + 1)[-2:]}", g["date"],
+                game_id, f"{season}-{str(season + 1)[-2:]}", game_date,
                 home_team, away_team, g.get("home_team_score"),
                 g.get("visitor_team_score"),
                 "final" if g.get("status") == "Final" else "scheduled",
