@@ -78,6 +78,12 @@ responses** — each file's docstring flags the specific assumptions
   itself (reverse line movement off the opening favorite, steam moves,
   and the Polymarket-vs-book gap) — see `src/market/line_movement.py`
   docstring for the exact caveats.
+- **Odds timestamps**: the hourly job seeds `games` rows for the next 7
+  days (via balldontlie, which returns unplayed games) specifically so
+  early lines have somewhere to attach — every hourly poll writes a new
+  `odds_snapshots` row regardless of whether the price moved, so the
+  full history from whenever a book first posts a line through closing
+  is all there, one row per hour, not just opening/closing bookends.
 
 ## Automation
 

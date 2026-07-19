@@ -39,6 +39,12 @@ from src.tracking import record
 
 MODEL_VERSION = "v0-unbuilt"  # bump when src/models/win_predictor.py is real
 LOOKBACK_DAYS = 3
+# How far ahead we seed scheduled (unplayed) games so early odds/Polymarket
+# snapshots have a game_id to attach to. NBA moneylines aren't reliably
+# posted this far out -- this is a safety margin, not a claim that lines
+# exist 7 days ahead; if a book posts earlier than expected, widening
+# this further is a one-line change, not a redesign.
+FUTURE_LOOKAHEAD_DAYS = 7
 SEASON_LABEL = "2025-26"
 BALLDONTLIE_SEASON_YEAR = 2025
 ALWAYS_NOTIFY = False
@@ -54,6 +60,8 @@ def _recent_window():
 
 def ingest_recent_results(db_path=None):
     start, end = _recent_window()
+    today = datetime.now(timezone.utc).date()
+    future_end = today + timedelta(days=FUTURE_LOOKAHEAD_DAYS)
 
     nba_api_source.persist_season(
         SEASON_LABEL,
@@ -61,10 +69,22 @@ def ingest_recent_results(db_path=None):
         date_to=end.strftime("%m/%d/%Y"),
         db_path=db_path,
     )
+    # balldontlie's games endpoint returns unplayed games too (status
+    # != 'Final'), which is what seeds `games` rows for the upcoming
+    # week -- without this, an early odds/Polymarket snapshot for a
+    # future game would have nothing to attach to and get silently
+    # skipped. Backward-looking call catches result updates same as
+    # before; forward-looking call is the actual fix.
     balldontlie_source.persist_season(
         BALLDONTLIE_SEASON_YEAR,
         start_date=start.isoformat(),
         end_date=end.isoformat(),
+        db_path=db_path,
+    )
+    balldontlie_source.persist_season(
+        BALLDONTLIE_SEASON_YEAR,
+        start_date=today.isoformat(),
+        end_date=future_end.isoformat(),
         db_path=db_path,
     )
     # Basketball-Reference has no documented rate limit -- run it less
@@ -81,7 +101,8 @@ def snapshot_market_data(db_path=None):
     upcoming = conn.execute(
         """SELECT game_id, home_team, away_team, game_date FROM games
            WHERE status = 'scheduled'
-             AND game_date <= date('now', '+2 day')"""
+             AND game_date <= date('now', ?)""",
+        (f"+{FUTURE_LOOKAHEAD_DAYS} day",),
     ).fetchall()
     conn.close()
 
