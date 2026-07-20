@@ -489,19 +489,20 @@ def _now_iso() -> str:
 def _extract_player_ids(table) -> list[dict]:
     """Ordered list of {'player_id','player_name'} for any BR table whose
     player rows carry a data-append-csv attribute -- the same site-wide
-    convention confirmed on box score pages (see _extract_player_rows),
-    reused here for plain roster tables that have no starter/reserve
-    concept."""
+    convention confirmed on box score pages (see _extract_player_rows).
+
+    Unlike a box score table (where the player name IS the first cell),
+    the roster table's first cell is the 'No.' (jersey number) column --
+    confirmed against a real live page, where this caused 0 players to
+    be found for all 30 teams despite real rows existing. Searches every
+    cell in the row rather than assuming a fixed position."""
     out = []
     for tr in table.find_all("tr"):
-        cells = tr.find_all(["th", "td"])
-        if not cells:
-            continue
-        first = cells[0]
-        player_id = first.get("data-append-csv")
-        if not player_id:
-            continue
-        out.append({"player_id": player_id, "player_name": first.get_text(strip=True)})
+        for cell in tr.find_all(["th", "td"]):
+            player_id = cell.get("data-append-csv")
+            if player_id:
+                out.append({"player_id": player_id, "player_name": cell.get_text(strip=True)})
+                break
     return out
 
 
