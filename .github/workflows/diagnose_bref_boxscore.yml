@@ -1,0 +1,26 @@
+name: Diagnose basketball-reference Box Score Structure
+
+# One-off diagnostic, NOT part of the regular pipeline -- checks BR's real
+# box score page structure (table ids, whether advanced stats are hidden
+# in HTML comments, where officials are listed) against a real live game
+# before building the actual scraper. See src/cli/diagnose_bref_boxscore.py.
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        run: python -m src.cli.diagnose_bref_boxscore
