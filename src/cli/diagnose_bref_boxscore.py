@@ -107,13 +107,26 @@ def diagnose(game_id: str):
     print("\n=== Sample of a basic box score table (first team found) ===")
     basic_tables = [t for t in direct_tables if t.get("id", "").endswith("-game-basic")]
     if basic_tables:
-        import pandas as pd
         import io
         df = pd.read_html(io.StringIO(str(basic_tables[0])))[0]
         print(df.columns.tolist())
         print(df.head(3))
     else:
         print("No direct '-game-basic' table found -- likely inside a comment block, see above.")
+
+    print("\n=== Sample of an advanced box score table (first team found) ===")
+    adv_tables = [t for t in direct_tables if t.get("id", "").endswith("-game-advanced")]
+    if adv_tables:
+        import io
+        df = pd.read_html(io.StringIO(str(adv_tables[0])))[0]
+        print(df.columns.tolist())
+        print(df.head(3))
+    else:
+        print("No direct '-game-advanced' table found -- likely inside a comment block, see above.")
+
+    print("\n=== Response encoding check (mangled names bug hunt) ===")
+    print(f"resp.encoding (requests' guess) = {resp.encoding!r}")
+    print(f"resp.apparent_encoding (chardet's guess) = {resp.apparent_encoding!r}")
 
 
 if __name__ == "__main__":
