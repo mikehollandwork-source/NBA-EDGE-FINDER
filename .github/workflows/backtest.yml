@@ -1,0 +1,88 @@
+name: Season Backtest
+
+# Manual only -- this is a slow, expensive, one-off run (full-season
+# backfill + walk-forward backtest across several stat combinations),
+# not something to run on a schedule. Trigger from the Actions tab.
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Season to backfill + backtest, e.g. 2025-26"
+        default: "2025-26"
+      balldontlie_year:
+        description: "balldontlie season year, e.g. 2025 for the 2025-26 season"
+        default: "2025"
+      skip_backfill:
+        description: "Skip backfill and just re-run the backtest against whatever's already in the committed db"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    # Full-season backfill (per-game box scores for ~1,230 games) plus a
+    # multi-combo walk-forward backtest can genuinely take hours -- this
+    # is well under GitHub's 6-hour job limit but is not a quick job.
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Backfill season data
+        if: ${{ github.event.inputs.skip_backfill != 'true' }}
+        env:
+          BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
+        run: |
+          python -m src.cli.backfill_season \
+            --season "${{ github.event.inputs.season }}" \
+            --balldontlie-year "${{ github.event.inputs.balldontlie_year }}"
+
+      - name: Commit backfilled database
+        if: ${{ github.event.inputs.skip_backfill != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/nba_edge_finder.db
+          git diff --staged --quiet || git commit -m "Season backfill: ${{ github.event.inputs.season }} [skip ci]"
+          git push
+
+      - name: Run walk-forward backtest across stat combinations
+        run: |
+          python -m src.backtest.run_backtest \
+            --season "${{ github.event.inputs.season }}" \
+            --out "data/backtest_results_${{ github.event.inputs.season }}.json"
+
+      - name: Commit backtest results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "data/backtest_results_${{ github.event.inputs.season }}.json" data/nba_edge_finder.db
+          git diff --staged --quiet || git commit -m "Backtest results: ${{ github.event.inputs.season }} [skip ci]"
+          git push
+
+      - name: Print summary
+        env:
+          RESULTS_FILE: data/backtest_results_${{ github.event.inputs.season }}.json
+        run: |
+          cat > /tmp/print_summary.py <<'PYEOF'
+          import json
+          import os
+
+          results = json.load(open(os.environ["RESULTS_FILE"]))
+          print("Combo".ljust(20), "Accuracy".ljust(10), "ROI/bet".ljust(10), "Games")
+          for r in results:
+              acc = f"{r['accuracy']:.1%}" if r["accuracy"] is not None else "n/a"
+              roi = f"{r['roi_pct']:+.1%}" if r["roi_pct"] is not None else "n/a"
+              print(r["combo"].ljust(20), acc.ljust(10), roi.ljust(10), r["games_graded"])
+          PYEOF
+          python /tmp/print_summary.py

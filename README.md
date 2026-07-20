@@ -13,17 +13,27 @@ basketball-reference.com, the-odds-api.com, polymarket.com) — see
 GitHub's own infrastructure and is NOT behind that block, so once the
 two setup steps in "Automation" below are done, the hourly job should
 run for real even though it couldn't be tested from the Claude session.
-Feature engineering (`src/features/build_features.py`) is now built —
-team rate/advanced stats (SOS + home/away adjusted), position-by-position
-starter comparisons (real h2h matchup data blended with a self-derived
-defense-vs-position fallback), star-weighted player form, bench
-contribution, height, rest/travel, referee tendency, and expected pace.
-Verified end-to-end against synthetic data (caught and fixed a real SQL
-bug this way — an aggregate query missing `GROUP BY` was collapsing all
-5 positions into one) since live sources are still blocked here. The
-model itself and backtesting (`src/models/win_predictor.py`,
-`src/backtest`) are still empty, waiting on the win-condition/signal
-design.
+**The full pipeline is now built end-to-end**: feature engineering
+(`src/features/build_features.py` — team rate/advanced stats, SOS,
+position-by-position h2h, star-weighted form, playstyle, composition,
+rest/travel, referees, schedule-spot risk), the win-condition/signal
+layer (`src/models/signals.py` — composite scorecard + regression-fit
+win condition, Stats + Consistency signals, all with toggleable stat
+combinations), `src/models/win_predictor.py` (writes predictions), and
+`src/backtest/run_backtest.py` (walk-forward backtest with ROI, ranking
+several stat combinations against each other). All of it verified
+end-to-end against synthetic data with a planted signal — 9/10 accuracy
+on held-out games, confirming the pipeline finds real signal, not just
+runs without crashing. Caught and fixed two real bugs this way (an
+aggregate SQL query missing `GROUP BY`, and a hardcoded `db_path=None`
+that silently pointed one function at the wrong database) since live
+sources are still blocked here — see "Known blocker" below.
+
+**Not yet done from an actual live run**: the first full-season backfill
+(`src/cli/backfill_season.py`) and the real walk-forward backtest itself
+both need real network access, which is why there's an on-demand GitHub
+Actions workflow (`.github/workflows/backtest.yml`) to run them — see
+"Running the season backtest" below.
 
 ## Known blocker
 
@@ -163,6 +173,28 @@ the DB each run instead).
 pick, settled against the closing moneyline available at settlement
 time — not the price live when the prediction was actually generated.
 
+## Running the season backtest
+
+This is a separate, on-demand workflow (`.github/workflows/backtest.yml`)
+from the hourly job — it's a slow, one-off run, not something to
+schedule. Trigger it manually from the GitHub Actions tab:
+
+1. **First time only**: before triggering, download the 2025-26 season's
+   file from sportsbookreviewsonline.com and commit it to `data/odds/`
+   (any `.xlsx` file there gets picked up automatically). Skippable —
+   the backtest still runs and reports accuracy without it, just not ROI.
+2. Run the **"Season Backtest"** workflow with the season input (default
+   `2025-26`). First run does a full backfill (pulls the whole season —
+   this is the slow part, expect it to take a while) then the
+   walk-forward backtest across several stat combinations
+   (`src/backtest/run_backtest.py`'s `CURATED_COMBOS`); subsequent runs
+   can check "skip backfill" to just re-run the backtest against
+   whatever's already in the committed database.
+3. Results land in `data/backtest_results_<season>.json` (committed back
+   to the repo) and in the `backtest_runs` table — accuracy, ROI, and
+   games graded per combination, so you can see which stat combinations
+   actually would have made money.
+
 ## Project layout
 
 ```
@@ -179,11 +211,13 @@ src/
   market/          vig calc, line-movement/sharp-money analysis
   tracking/        settles predictions, computes the units/win-loss rollup
   notify/          Telegram summary sender
-  features/        rolling team/player performance features (empty stub)
-  models/          win-probability model (empty stub) + team-vs-team edge
-  backtest/        walk-forward backtest against past seasons (empty stub)
+  features/        build_features.py -- the full feature layer
+  models/          signals.py (win condition + Stats/Consistency signals),
+                     win_predictor.py (writes predictions), edge.py
+  backtest/        run_backtest.py -- walk-forward + combination-testing
   db/              SQLite schema + connection helper
-  cli/             hourly automation entry point (runs the full pipeline)
+  cli/             hourly_pipeline.py (hourly automation),
+                     backfill_season.py (one-time full-season pull)
 data/              raw/processed data + odds snapshots + the committed db
 notebooks/         exploration and backtest-result inspection
 tests/
