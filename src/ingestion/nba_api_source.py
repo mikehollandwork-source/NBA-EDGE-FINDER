@@ -4,27 +4,58 @@ Primary source for detailed box scores and advanced stats (off/def
 rating, pace, possessions) needed for the strength-of-schedule and
 Stats-signal calculations.
 
-NOT YET TESTED against live data -- this environment's egress policy
-currently blocks stats.nba.com. Implemented against nba_api's documented
-endpoint/column names; verify column names still match once network
-access is available (nba_api occasionally changes them across NBA.com
-backend updates).
+Confirmed against real nba_api usage: a full-season LeagueGameFinder
+call (no date filter, ~1,230 games in one response) timed out against
+nba_api's 30s default on the first live run of the backfill workflow
+(requests.exceptions.ReadTimeout after exactly 30s). Every endpoint
+class here takes an explicit `timeout` kwarg (verified against
+nba_api's actual __init__ signatures, not assumed) -- NBA_API_TIMEOUT
+below overrides the default, and _with_retries() retries transient
+timeouts/connection errors with backoff rather than letting one slow
+request kill the whole backfill.
 
-stats.nba.com is rate-limit sensitive: a short delay is added between
-calls. If you see repeated timeouts once this runs live, increase
-REQUEST_DELAY_SECONDS rather than removing the delay.
+Column/field names are still otherwise best-effort against nba_api's
+documented shapes and may need adjustment once real data comes back.
 """
 
+import logging
 import time
+
+import requests
 
 from src.db.connection import get_connection
 
 REQUEST_DELAY_SECONDS = 0.7
+NBA_API_TIMEOUT = 90       # nba_api's own default (30s) proved too short for a
+                          # full-season LeagueGameFinder call on the first live run
+MAX_RETRIES = 3
+RETRY_BACKOFF_SECONDS = 5
 SOURCE_NAME = "nba_api"
+
+log = logging.getLogger("nba_api_source")
 
 
 def _sleep():
     time.sleep(REQUEST_DELAY_SECONDS)
+
+
+def _with_retries(build_endpoint):
+    """Call build_endpoint() (a zero-arg callable that constructs an
+    nba_api endpoint, which fetches on construction) with retries on
+    transient network errors -- stats.nba.com is slow/flaky enough that
+    a single timeout shouldn't kill an entire season backfill."""
+    last_exc = None
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            return build_endpoint()
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as exc:
+            last_exc = exc
+            if attempt < MAX_RETRIES:
+                wait = RETRY_BACKOFF_SECONDS * attempt
+                log.warning("nba_api request timed out (attempt %d/%d), retrying in %ds: %s",
+                           attempt, MAX_RETRIES, wait, exc)
+                time.sleep(wait)
+    raise last_exc
 
 
 def fetch_season_team_game_log(season: str, date_from: str = None, date_to: str = None):
@@ -40,13 +71,14 @@ def fetch_season_team_game_log(season: str, date_from: str = None, date_to: str 
     """
     from nba_api.stats.endpoints import leaguegamefinder
 
-    finder = leaguegamefinder.LeagueGameFinder(
+    finder = _with_retries(lambda: leaguegamefinder.LeagueGameFinder(
         season_nullable=season,
         league_id_nullable="00",
         season_type_nullable="Regular Season",
         date_from_nullable=date_from or "",
         date_to_nullable=date_to or "",
-    )
+        timeout=NBA_API_TIMEOUT,
+    ))
     _sleep()
     return finder.get_data_frames()[0]
 
@@ -55,7 +87,8 @@ def fetch_game_boxscore_traditional(game_id: str):
     """Return (player_stats_df, team_stats_df) for a single game_id."""
     from nba_api.stats.endpoints import boxscoretraditionalv2
 
-    box = boxscoretraditionalv2.BoxScoreTraditionalV2(game_id=game_id)
+    box = _with_retries(lambda: boxscoretraditionalv2.BoxScoreTraditionalV2(
+        game_id=game_id, timeout=NBA_API_TIMEOUT))
     _sleep()
     frames = box.get_data_frames()
     return frames[0], frames[1]
@@ -69,7 +102,8 @@ def fetch_game_boxscore_advanced(game_id: str):
     """
     from nba_api.stats.endpoints import boxscoreadvancedv2
 
-    box = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id=game_id)
+    box = _with_retries(lambda: boxscoreadvancedv2.BoxScoreAdvancedV2(
+        game_id=game_id, timeout=NBA_API_TIMEOUT))
     _sleep()
     frames = box.get_data_frames()
     return frames[0], frames[1]
@@ -81,7 +115,8 @@ def fetch_boxscore_officials(game_id: str):
     required for the rest of the pipeline to run."""
     from nba_api.stats.endpoints import boxscoresummaryv2
 
-    box = boxscoresummaryv2.BoxScoreSummaryV2(game_id=game_id)
+    box = _with_retries(lambda: boxscoresummaryv2.BoxScoreSummaryV2(
+        game_id=game_id, timeout=NBA_API_TIMEOUT))
     _sleep()
     officials_df = box.get_data_frames()[2]  # 'Officials' frame
     return [f"{r['FIRST_NAME']} {r['LAST_NAME']}".strip() for _, r in officials_df.iterrows()]
@@ -92,7 +127,8 @@ def fetch_player_bio_stats(season: str):
     bio stats), rather than one commonplayerinfo call per player."""
     from nba_api.stats.endpoints import leaguedashplayerbiostats
 
-    stats = leaguedashplayerbiostats.LeagueDashPlayerBioStats(season=season)
+    stats = _with_retries(lambda: leaguedashplayerbiostats.LeagueDashPlayerBioStats(
+        season=season, timeout=NBA_API_TIMEOUT))
     _sleep()
     return stats.get_data_frames()[0]
 
@@ -103,9 +139,10 @@ def fetch_speed_distance(season: str):
     less consistent than regular box score stats; treat as optional."""
     from nba_api.stats.endpoints import leaguedashptstats
 
-    stats = leaguedashptstats.LeagueDashPtStats(
+    stats = _with_retries(lambda: leaguedashptstats.LeagueDashPtStats(
         season=season, pt_measure_type="SpeedDistance", player_or_team="Player",
-    )
+        timeout=NBA_API_TIMEOUT,
+    ))
     _sleep()
     return stats.get_data_frames()[0]
 
@@ -117,9 +154,9 @@ def fetch_matchups(def_player_id: str, season: str):
     to trust; undocumented endpoint, verify shape on first live run."""
     from nba_api.stats.endpoints import leagueseasonmatchups
 
-    matchups = leagueseasonmatchups.LeagueSeasonMatchups(
-        season=season, def_player_id_nullable=def_player_id,
-    )
+    matchups = _with_retries(lambda: leagueseasonmatchups.LeagueSeasonMatchups(
+        season=season, def_player_id_nullable=def_player_id, timeout=NBA_API_TIMEOUT,
+    ))
     _sleep()
     return matchups.get_data_frames()[0]
 
