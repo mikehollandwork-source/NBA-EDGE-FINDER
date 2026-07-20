@@ -128,6 +128,18 @@ def diagnose(game_id: str):
     print(f"resp.encoding (requests' guess) = {resp.encoding!r}")
     print(f"resp.apparent_encoding (chardet's guess) = {resp.apparent_encoding!r}")
 
+    print("\n=== Raw row attributes (player id / starter-reserve markers) ===")
+    if basic_tables:
+        rows = basic_tables[0].find_all("tr")
+        for row in rows[:8]:
+            cells = row.find_all(["th", "td"])
+            if not cells:
+                continue
+            first = cells[0]
+            print(f"row: first_cell_text={first.get_text(strip=True)!r} "
+                  f"first_cell_attrs={dict(first.attrs)} "
+                  f"row_class={row.get('class')}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
