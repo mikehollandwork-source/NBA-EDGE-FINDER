@@ -1,0 +1,4914 @@
+[
+  {
+    "combo": "team_only",
+    "groups": [
+      "team"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 47,
+    "accuracy": 0.47,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.39152946063963506,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.1018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.4636429531534685,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.30187428822584184,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.9218742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.29812571177415814,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.49812571177415804,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.0398053227086006,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.3501501502948074,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.0015739876362270476,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.5670912290155374,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.49812571177415804,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 1.1018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.29812571177415814,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "NOP",
+        "actual_winner": "LAC",
+        "edge": -0.14640157384312358,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.49812571177415804,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.5464015738431236,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.29812571177415814,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.4535984261568764,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NOP",
+        "actual_winner": "OKC",
+        "edge": -0.12571191867070977,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.7018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.029160194532778794,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.29812571177415814,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.10187428822584192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.6498498497051926,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5018742882258419,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "WAS",
+        "actual_winner": "NYK",
+        "edge": -0.031459045107491375,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -0.5877808841879512,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.12571191867070974,
+        "units": null
+      }
+    ]
+  },
+  {
+    "combo": "team_sos",
+    "groups": [
+      "team",
+      "sos",
+      "home_away_split"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 48,
+    "accuracy": 0.48,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.8896551724137931,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5108712671339894,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.1108712671339895,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -1.1481342589550425,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.3108712671339894,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.7943781178303577,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.2891287328660106,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.48912873286601055,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "GSW",
+        "actual_winner": "MIL",
+        "edge": -0.2623358782722193,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.848232551948355,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.703448275862069,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.7967208054713645,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.48912873286601055,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 1.1108712671339895,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.2891287328660106,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "LAC",
+        "actual_winner": "LAC",
+        "edge": 0.3517219100586458,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5108712671339894,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.48912873286601055,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.6639409075789221,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.2891287328660106,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.951719925030494,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.3724105345445617,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.7108712671339894,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.7310271581610216,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.2891287328660106,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.11087126713398944,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.4707431782423692,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5108712671339894,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "WAS",
+        "actual_winner": "NYK",
+        "edge": -0.02246206619934387,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -1.2896090939863232,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.8275862068965518,
+        "units": null
+      }
+    ]
+  },
+  {
+    "combo": "team_playstyle",
+    "groups": [
+      "team",
+      "sos",
+      "home_away_split",
+      "playstyle",
+      "style_clash"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 48,
+    "accuracy": 0.48,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.8896551724137931,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.1108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -1.148131918601538,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.31087139153648513,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.7943504516661907,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.28912860846351485,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.48912860846351475,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "GSW",
+        "actual_winner": "MIL",
+        "edge": -0.26228658927706494,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.8482325296445522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.703448275862069,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.7966743050476309,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.48912860846351475,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 1.1108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.28912860846351485,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "LAC",
+        "actual_winner": "LAC",
+        "edge": 0.35172190874748355,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.48912860846351475,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.6638929787316975,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.28912860846351485,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.9517199225001376,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.3724105327261179,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.7108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.7310271546583043,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.28912860846351485,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.11087139153648522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.47074893720753286,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5108713915364852,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "WAS",
+        "actual_winner": "NYK",
+        "edge": -0.02246194179684808,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -1.2896090811679808,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.8275862068965518,
+        "units": null
+      }
+    ]
+  },
+  {
+    "combo": "team_situational",
+    "groups": [
+      "team",
+      "sos",
+      "home_away_split",
+      "rest_travel",
+      "schedule_spot"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 48,
+    "accuracy": 0.48,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.8896551724137931,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.1139217559008867,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BKN",
+        "actual_winner": "ATL",
+        "edge": 0.03448270819167987,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.3018823114776681,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.22251698895279226,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.26529387529508086,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.40083189527433577,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "GSW",
+        "actual_winner": "MIL",
+        "edge": -0.31054806287693637,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.8482758620424938,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.703448275862069,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.07351106234772736,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.012304708052607749,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 0.40000641731285935,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.26529387529508086,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "LAC",
+        "actual_winner": "LAC",
+        "edge": 0.3428551278934897,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.41346318710241775,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.05137037304158071,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.26529387529508086,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.9517123139008048,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.3723906011591731,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.726172734669034,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.7310329331780522,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.26529387529508086,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.1347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.1525351084215186,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5347061247049192,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.0013727913715858853,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -0.08965913998919339,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.8275862068965518,
+        "units": null
+      }
+    ]
+  },
+  {
+    "combo": "positions_heavy",
+    "groups": [
+      "team",
+      "sos",
+      "positions",
+      "bench"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 48,
+    "accuracy": 0.48,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.8896551724137931,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5108714012590959,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.110871401259096,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -1.1653388752549323,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.31087140125909585,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.7943783577184548,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.28912859874090413,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.48912859874090403,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "GSW",
+        "actual_winner": "MIL",
+        "edge": -0.48624496198969225,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.8482758597969946,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.703448275862069,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.9993914049992451,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.48912859874090403,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 1.110871401259096,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.28912859874090413,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "LAC",
+        "actual_winner": "LAC",
+        "edge": 0.35172413792502305,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5108714012590959,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.48912859874090403,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.7890977150470807,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.28912859874090413,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.9517241379095382,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.37241379309058814,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.7108714012590959,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.7310344827278574,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.28912859874090413,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.11087140125909593,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.34380862356978237,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5108714012590959,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "WAS",
+        "actual_winner": "NYK",
+        "edge": -0.022461932074237363,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -1.2896551711962436,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.8275862068965518,
+        "units": null
+      }
+    ]
+  },
+  {
+    "combo": "full",
+    "groups": [
+      "team",
+      "sos",
+      "home_away_split",
+      "playstyle",
+      "style_clash",
+      "composition",
+      "rest_travel",
+      "schedule_spot",
+      "bench",
+      "positions"
+    ],
+    "season": "2025-26",
+    "games_graded": 100,
+    "correct": 48,
+    "accuracy": 0.48,
+    "bets_settled": 0,
+    "roi_units": 0.0,
+    "roi_pct": null,
+    "predictions": [
+      {
+        "game_id": "bdl_18446819",
+        "game_date": "2025-10-21",
+        "predicted_winner": "HOU",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446820",
+        "game_date": "2025-10-21",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446821",
+        "game_date": "2025-10-22",
+        "predicted_winner": "CLE",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446822",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446823",
+        "game_date": "2025-10-22",
+        "predicted_winner": "BKN",
+        "actual_winner": "CHA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446824",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIA",
+        "actual_winner": "ORL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446825",
+        "game_date": "2025-10-22",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446826",
+        "game_date": "2025-10-22",
+        "predicted_winner": "PHI",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446827",
+        "game_date": "2025-10-22",
+        "predicted_winner": "DET",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446828",
+        "game_date": "2025-10-22",
+        "predicted_winner": "NOP",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446829",
+        "game_date": "2025-10-22",
+        "predicted_winner": "WAS",
+        "actual_winner": "MIL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446830",
+        "game_date": "2025-10-22",
+        "predicted_winner": "LAC",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446831",
+        "game_date": "2025-10-22",
+        "predicted_winner": "SAC",
+        "actual_winner": "PHX",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446832",
+        "game_date": "2025-10-22",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446833",
+        "game_date": "2025-10-23",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446834",
+        "game_date": "2025-10-23",
+        "predicted_winner": "DEN",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446835",
+        "game_date": "2025-10-24",
+        "predicted_winner": "BOS",
+        "actual_winner": "NYK",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446836",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446837",
+        "game_date": "2025-10-24",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446838",
+        "game_date": "2025-10-24",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446839",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446840",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446841",
+        "game_date": "2025-10-24",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446842",
+        "game_date": "2025-10-24",
+        "predicted_winner": "SAS",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446843",
+        "game_date": "2025-10-24",
+        "predicted_winner": "DAL",
+        "actual_winner": "WAS",
+        "edge": 0.27999999999999997,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446844",
+        "game_date": "2025-10-24",
+        "predicted_winner": "GSW",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446845",
+        "game_date": "2025-10-24",
+        "predicted_winner": "UTA",
+        "actual_winner": "SAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446846",
+        "game_date": "2025-10-24",
+        "predicted_winner": "PHX",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446847",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446848",
+        "game_date": "2025-10-25",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446849",
+        "game_date": "2025-10-25",
+        "predicted_winner": "CHA",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446850",
+        "game_date": "2025-10-25",
+        "predicted_winner": "IND",
+        "actual_winner": "MEM",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446851",
+        "game_date": "2025-10-25",
+        "predicted_winner": "PHX",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446852",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BKN",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446853",
+        "game_date": "2025-10-26",
+        "predicted_winner": "BOS",
+        "actual_winner": "DET",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446854",
+        "game_date": "2025-10-26",
+        "predicted_winner": "MIL",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446855",
+        "game_date": "2025-10-26",
+        "predicted_winner": "NYK",
+        "actual_winner": "MIA",
+        "edge": -1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446856",
+        "game_date": "2025-10-26",
+        "predicted_winner": "WAS",
+        "actual_winner": "CHA",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446857",
+        "game_date": "2025-10-26",
+        "predicted_winner": "IND",
+        "actual_winner": "MIN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446858",
+        "game_date": "2025-10-26",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 1.2,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446859",
+        "game_date": "2025-10-26",
+        "predicted_winner": "POR",
+        "actual_winner": "LAC",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446860",
+        "game_date": "2025-10-26",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446861",
+        "game_date": "2025-10-27",
+        "predicted_winner": "CLE",
+        "actual_winner": "CLE",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446862",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446863",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ORL",
+        "actual_winner": "PHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446864",
+        "game_date": "2025-10-27",
+        "predicted_winner": "ATL",
+        "actual_winner": "CHI",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446865",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BKN",
+        "actual_winner": "HOU",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446866",
+        "game_date": "2025-10-27",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446867",
+        "game_date": "2025-10-27",
+        "predicted_winner": "TOR",
+        "actual_winner": "SAS",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446868",
+        "game_date": "2025-10-27",
+        "predicted_winner": "DAL",
+        "actual_winner": "OKC",
+        "edge": 0.52,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446869",
+        "game_date": "2025-10-27",
+        "predicted_winner": "PHX",
+        "actual_winner": "UTA",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446870",
+        "game_date": "2025-10-27",
+        "predicted_winner": "MEM",
+        "actual_winner": "GSW",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446871",
+        "game_date": "2025-10-27",
+        "predicted_winner": "POR",
+        "actual_winner": "POR",
+        "edge": 0.0,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446872",
+        "game_date": "2025-10-28",
+        "predicted_winner": "WAS",
+        "actual_winner": "PHI",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446873",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIA",
+        "actual_winner": "MIA",
+        "edge": 0.8896551724137931,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446874",
+        "game_date": "2025-10-28",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": 0.5347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446875",
+        "game_date": "2025-10-28",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446876",
+        "game_date": "2025-10-28",
+        "predicted_winner": "GSW",
+        "actual_winner": "GSW",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446877",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BOS",
+        "actual_winner": "BOS",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446878",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 1.1139217773753896,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446879",
+        "game_date": "2025-10-29",
+        "predicted_winner": "BKN",
+        "actual_winner": "ATL",
+        "edge": 0.03448270819401161,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446880",
+        "game_date": "2025-10-29",
+        "predicted_winner": "TOR",
+        "actual_winner": "HOU",
+        "edge": 0.30188233686039867,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446881",
+        "game_date": "2025-10-29",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446882",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DAL",
+        "actual_winner": "DAL",
+        "edge": 0.22251693725900634,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446883",
+        "game_date": "2025-10-29",
+        "predicted_winner": "DEN",
+        "actual_winner": "DEN",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446884",
+        "game_date": "2025-10-29",
+        "predicted_winner": "UTA",
+        "actual_winner": "POR",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446885",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MIN",
+        "actual_winner": "LAL",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446886",
+        "game_date": "2025-10-29",
+        "predicted_winner": "MEM",
+        "actual_winner": "MEM",
+        "edge": -0.26529386053659765,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446887",
+        "game_date": "2025-10-30",
+        "predicted_winner": "ORL",
+        "actual_winner": "ORL",
+        "edge": -0.400831900753127,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446888",
+        "game_date": "2025-10-30",
+        "predicted_winner": "GSW",
+        "actual_winner": "MIL",
+        "edge": -0.3105492770114435,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446889",
+        "game_date": "2025-10-30",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.8482758620424959,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446890",
+        "game_date": "2025-10-30",
+        "predicted_winner": "MIA",
+        "actual_winner": "SAS",
+        "edge": -0.703448275862069,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446891",
+        "game_date": "2025-10-31",
+        "predicted_winner": "ATL",
+        "actual_winner": "ATL",
+        "edge": -0.07351099574497322,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446892",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHI",
+        "actual_winner": "BOS",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446893",
+        "game_date": "2025-10-31",
+        "predicted_winner": "TOR",
+        "actual_winner": "TOR",
+        "edge": -0.012304722956037706,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446894",
+        "game_date": "2025-10-31",
+        "predicted_winner": "CHI",
+        "actual_winner": "CHI",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446895",
+        "game_date": "2025-10-31",
+        "predicted_winner": "MEM",
+        "actual_winner": "LAL",
+        "edge": 0.40000641733825937,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446896",
+        "game_date": "2025-10-31",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446897",
+        "game_date": "2025-10-31",
+        "predicted_winner": "DEN",
+        "actual_winner": "POR",
+        "edge": -0.26529386053659765,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446898",
+        "game_date": "2025-10-31",
+        "predicted_winner": "LAC",
+        "actual_winner": "LAC",
+        "edge": 0.3428553501257054,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446899",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIL",
+        "actual_winner": "SAC",
+        "edge": 0.5347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446900",
+        "game_date": "2025-11-01",
+        "predicted_winner": "MIN",
+        "actual_winner": "MIN",
+        "edge": -0.4134631887179088,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446901",
+        "game_date": "2025-11-01",
+        "predicted_winner": "GSW",
+        "actual_winner": "IND",
+        "edge": -0.05137032200452102,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446902",
+        "game_date": "2025-11-01",
+        "predicted_winner": "WAS",
+        "actual_winner": "ORL",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446903",
+        "game_date": "2025-11-01",
+        "predicted_winner": "HOU",
+        "actual_winner": "HOU",
+        "edge": -0.26529386053659765,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446904",
+        "game_date": "2025-11-01",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": 0.9517123145949518,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446905",
+        "game_date": "2025-11-02",
+        "predicted_winner": "OKC",
+        "actual_winner": "OKC",
+        "edge": 0.3723906021573905,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446906",
+        "game_date": "2025-11-02",
+        "predicted_winner": "BKN",
+        "actual_winner": "PHI",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446907",
+        "game_date": "2025-11-02",
+        "predicted_winner": "CHA",
+        "actual_winner": "CHA",
+        "edge": 0.7261727521785704,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446908",
+        "game_date": "2025-11-02",
+        "predicted_winner": "ATL",
+        "actual_winner": "CLE",
+        "edge": -0.7310329332616633,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446909",
+        "game_date": "2025-11-02",
+        "predicted_winner": "MEM",
+        "actual_winner": "TOR",
+        "edge": -0.26529386053659765,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446910",
+        "game_date": "2025-11-02",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446911",
+        "game_date": "2025-11-02",
+        "predicted_winner": "PHX",
+        "actual_winner": "PHX",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446912",
+        "game_date": "2025-11-02",
+        "predicted_winner": "LAL",
+        "actual_winner": "LAL",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446913",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BKN",
+        "actual_winner": "MIN",
+        "edge": 0.1347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446914",
+        "game_date": "2025-11-03",
+        "predicted_winner": "MIL",
+        "actual_winner": "MIL",
+        "edge": -0.15253509102087914,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446915",
+        "game_date": "2025-11-03",
+        "predicted_winner": "BOS",
+        "actual_winner": "UTA",
+        "edge": 0.5347061394634024,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446916",
+        "game_date": "2025-11-03",
+        "predicted_winner": "NYK",
+        "actual_winner": "NYK",
+        "edge": 0.0013728061300690986,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446917",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DAL",
+        "actual_winner": "HOU",
+        "edge": -0.08965913988213065,
+        "units": null
+      },
+      {
+        "game_id": "bdl_18446918",
+        "game_date": "2025-11-03",
+        "predicted_winner": "DET",
+        "actual_winner": "DET",
+        "edge": -0.8275862068965518,
+        "units": null
+      }
+    ]
+  }
+]
