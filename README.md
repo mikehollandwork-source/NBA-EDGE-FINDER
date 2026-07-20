@@ -13,9 +13,17 @@ basketball-reference.com, the-odds-api.com, polymarket.com) — see
 GitHub's own infrastructure and is NOT behind that block, so once the
 two setup steps in "Automation" below are done, the hourly job should
 run for real even though it couldn't be tested from the Claude session.
-Feature engineering, the model, and backtesting (`src/features`,
-`src/models/win_predictor.py`, `src/backtest`) are still empty stubs,
-waiting on real data to design against.
+Feature engineering (`src/features/build_features.py`) is now built —
+team rate/advanced stats (SOS + home/away adjusted), position-by-position
+starter comparisons (real h2h matchup data blended with a self-derived
+defense-vs-position fallback), star-weighted player form, bench
+contribution, height, rest/travel, referee tendency, and expected pace.
+Verified end-to-end against synthetic data (caught and fixed a real SQL
+bug this way — an aggregate query missing `GROUP BY` was collapsing all
+5 positions into one) since live sources are still blocked here. The
+model itself and backtesting (`src/models/win_predictor.py`,
+`src/backtest`) are still empty, waiting on the win-condition/signal
+design.
 
 ## Known blocker
 

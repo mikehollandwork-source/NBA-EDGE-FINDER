@@ -75,14 +75,170 @@ def fetch_game_boxscore_advanced(game_id: str):
     return frames[0], frames[1]
 
 
+def fetch_boxscore_officials(game_id: str):
+    """Officiating crew for a game, e.g. ['Scott Foster', 'Tony Brothers'].
+    Empty list on failure -- officials are display/analysis-only, never
+    required for the rest of the pipeline to run."""
+    from nba_api.stats.endpoints import boxscoresummaryv2
+
+    box = boxscoresummaryv2.BoxScoreSummaryV2(game_id=game_id)
+    _sleep()
+    officials_df = box.get_data_frames()[2]  # 'Officials' frame
+    return [f"{r['FIRST_NAME']} {r['LAST_NAME']}".strip() for _, r in officials_df.iterrows()]
+
+
+def fetch_player_bio_stats(season: str):
+    """Height + position for every active player in one call (season
+    bio stats), rather than one commonplayerinfo call per player."""
+    from nba_api.stats.endpoints import leaguedashplayerbiostats
+
+    stats = leaguedashplayerbiostats.LeagueDashPlayerBioStats(season=season)
+    _sleep()
+    return stats.get_data_frames()[0]
+
+
+def fetch_speed_distance(season: str):
+    """League-wide tracking stats (avg speed, distance covered per game)
+    for the season, one call. SportVU/tracking data -- coverage can be
+    less consistent than regular box score stats; treat as optional."""
+    from nba_api.stats.endpoints import leaguedashptstats
+
+    stats = leaguedashptstats.LeagueDashPtStats(
+        season=season, pt_measure_type="SpeedDistance", player_or_team="Player",
+    )
+    _sleep()
+    return stats.get_data_frames()[0]
+
+
+def fetch_matchups(def_player_id: str, season: str):
+    """Real player-vs-player matchup data (time matched up, points/FG
+    allowed) for everyone a given defender has guarded this season --
+    the PRIMARY h2h signal per the design, when the sample is big enough
+    to trust; undocumented endpoint, verify shape on first live run."""
+    from nba_api.stats.endpoints import leagueseasonmatchups
+
+    matchups = leagueseasonmatchups.LeagueSeasonMatchups(
+        season=season, def_player_id_nullable=def_player_id,
+    )
+    _sleep()
+    return matchups.get_data_frames()[0]
+
+
+def persist_matchups_for_defenders(defender_ids: list[str], season: str, db_path=None):
+    """Fetch + store real h2h matchup data for a specific set of defenders
+    (e.g. tonight's projected starters), not the whole league -- one API
+    call per defender, so this is meant to be called selectively per
+    upcoming matchup rather than as a league-wide nightly job."""
+    conn = get_connection(db_path) if db_path else get_connection()
+    now = _now_iso()
+    for def_id in defender_ids:
+        try:
+            rows = fetch_matchups(def_id, season)
+        except Exception as exc:
+            import logging
+            logging.getLogger("nba_api_source").warning(
+                "matchups fetch failed for defender %s: %s", def_id, exc)
+            continue
+        for _, row in rows.iterrows():
+            conn.execute(
+                """INSERT INTO player_matchups
+                   (def_player_id, off_player_id, season, partial_possessions,
+                    points_allowed, fg_made_allowed, fg_attempted_allowed, updated_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                   ON CONFLICT(def_player_id, off_player_id, season) DO UPDATE SET
+                       partial_possessions = excluded.partial_possessions,
+                       points_allowed = excluded.points_allowed,
+                       fg_made_allowed = excluded.fg_made_allowed,
+                       fg_attempted_allowed = excluded.fg_attempted_allowed,
+                       updated_at = excluded.updated_at""",
+                (
+                    def_id, str(row.get("OFF_PLAYER_ID")), season,
+                    row.get("PARTIAL_POSS"), row.get("PLAYER_PTS"),
+                    row.get("MATCHUP_FGM"), row.get("MATCHUP_FGA"), now,
+                ),
+            )
+    conn.commit()
+    conn.close()
+
+
+def persist_player_bio(season: str, db_path=None):
+    """Write position/height into the players reference table -- refresh
+    periodically (not every hourly run), positions/heights don't change
+    mid-season."""
+    conn = get_connection(db_path) if db_path else get_connection()
+    bio = fetch_player_bio_stats(season)
+    now = _now_iso()
+    for _, row in bio.iterrows():
+        conn.execute(
+            """INSERT INTO players
+               (player_id, player_name, position, height_inches, current_team, source, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?)
+               ON CONFLICT(player_id) DO UPDATE SET
+                   player_name = excluded.player_name,
+                   position = excluded.position,
+                   height_inches = excluded.height_inches,
+                   current_team = excluded.current_team,
+                   updated_at = excluded.updated_at""",
+            (
+                str(row["PLAYER_ID"]), row.get("PLAYER_NAME"),
+                _bucket_position(row.get("POSITION")),
+                _height_to_inches(row.get("PLAYER_HEIGHT")),
+                row.get("TEAM_ABBREVIATION"), SOURCE_NAME, now,
+            ),
+        )
+    conn.commit()
+    conn.close()
+
+
+def _bucket_position(raw_position) -> str | None:
+    """stats.nba.com POSITION is free text like 'Guard', 'Forward-Center'
+    -- bucket to our PG/SG/SF/PF/C convention as best-effort (it doesn't
+    distinguish PG/SG or SF/PF on its own, so this is a coarse guess;
+    good enough as the FALLBACK positional bucket, with real h2h matchup
+    data as primary per the design)."""
+    if not raw_position:
+        return None
+    p = str(raw_position).lower()
+    if "guard" in p and "forward" not in p:
+        return "SG"  # coarse: nba_api doesn't split PG/SG
+    if "forward" in p and "center" not in p and "guard" not in p:
+        return "SF"  # coarse: nba_api doesn't split SF/PF
+    if "center" in p:
+        return "C"
+    if "guard" in p and "forward" in p:
+        return "SG"
+    if "forward" in p and "center" in p:
+        return "PF"
+    return None
+
+
+def _height_to_inches(height_str) -> float | None:
+    """stats.nba.com height is 'FT-IN' e.g. '6-9' -> 81.0."""
+    if not height_str or "-" not in str(height_str):
+        return None
+    try:
+        ft, inch = str(height_str).split("-")
+        return int(ft) * 12 + int(inch)
+    except (ValueError, TypeError):
+        return None
+
+
+def _now_iso() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat()
+
+
 def persist_season(season: str, date_from: str = None, date_to: str = None, db_path=None):
     """Pull team game logs (optionally limited to a date window) and
-    write games / team_game_stats rows.
+    write games / team_game_stats rows, plus per-game player box scores
+    (traditional + advanced) and officials for any game not already
+    fully populated.
 
     Full-season calls (~1,230 games) are meant for a one-time backfill;
     the hourly job should pass date_from/date_to for a short recent
     window instead, since LeagueGameFinder itself is one call regardless
-    of range -- it's the per-game boxscore calls that scale with volume.
+    of range -- it's the per-game boxscore calls that scale with volume
+    (traditional + advanced + officials = 3 calls per NEW game).
     """
     conn = get_connection(db_path) if db_path else get_connection()
     team_log = fetch_season_team_game_log(season, date_from, date_to)
@@ -96,6 +252,11 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
 
         home_row = next(r for _, r in game_rows.iterrows() if "vs." in r["MATCHUP"])
         away_row = next(r for _, r in game_rows.iterrows() if "@" in r["MATCHUP"])
+
+        already_had_players = conn.execute(
+            "SELECT 1 FROM player_game_stats WHERE game_id = ? AND source = ? LIMIT 1",
+            (game_id, SOURCE_NAME),
+        ).fetchone()
 
         conn.execute(
             """INSERT INTO games (game_id, season, game_date, home_team,
@@ -126,5 +287,81 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
                 ),
             )
 
+        if already_had_players:
+            continue  # already pulled the expensive per-game data for this one
+
+        _persist_game_detail(conn, game_id, home_row["TEAM_ABBREVIATION"],
+                             away_row["TEAM_ABBREVIATION"])
+
     conn.commit()
     conn.close()
+
+
+def _persist_game_detail(conn, game_id: str, home_team: str, away_team: str):
+    """Per-game player box score (traditional + advanced merged) and
+    officials -- the 3 extra calls per new game. Any failure here is
+    logged-and-skipped, not fatal to the season pull."""
+    try:
+        player_trad, _team_trad = fetch_game_boxscore_traditional(game_id)
+        player_adv, team_adv = fetch_game_boxscore_advanced(game_id)
+        adv_by_player = {str(r["PLAYER_ID"]): r for _, r in player_adv.iterrows()}
+
+        for _, row in player_trad.iterrows():
+            team_abbr = row["TEAM_ABBREVIATION"]
+            is_home = int(team_abbr == home_team)
+            adv = adv_by_player.get(str(row["PLAYER_ID"]), {})
+            conn.execute(
+                """INSERT INTO player_game_stats
+                   (game_id, player_id, player_name, team, source, is_home,
+                    is_starter, status, minutes, points, fgm, fga, fg3m, fg3a,
+                    ftm, fta, oreb, dreb, reb, ast, stl, blk, tov, pf, plus_minus)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                   ON CONFLICT(game_id, player_id, source) DO NOTHING""",
+                (
+                    game_id, str(row["PLAYER_ID"]), row.get("PLAYER_NAME"),
+                    team_abbr, SOURCE_NAME, is_home,
+                    int(bool(row.get("START_POSITION"))),
+                    "dnp" if row.get("COMMENT") and not row.get("MIN") else "active",
+                    _parse_nba_minutes(row.get("MIN")), row.get("PTS"),
+                    row.get("FGM"), row.get("FGA"), row.get("FG3M"), row.get("FG3A"),
+                    row.get("FTM"), row.get("FTA"), row.get("OREB"), row.get("DREB"),
+                    row.get("REB"), row.get("AST"), row.get("STL"), row.get("BLK"),
+                    row.get("TOV" if "TOV" in row else "TO"), row.get("PF"),
+                    row.get("PLUS_MINUS"),
+                ),
+            )
+
+        for _, row in team_adv.iterrows():
+            conn.execute(
+                """UPDATE team_game_stats SET
+                       possessions = ?, off_rating = ?, def_rating = ?,
+                       net_rating = ?, pace = ?
+                   WHERE game_id = ? AND team = ? AND source = ?""",
+                (row.get("POSS"), row.get("OFF_RATING"), row.get("DEF_RATING"),
+                 row.get("NET_RATING"), row.get("PACE"),
+                 game_id, row["TEAM_ABBREVIATION"], SOURCE_NAME),
+            )
+
+        for name in fetch_boxscore_officials(game_id):
+            conn.execute(
+                """INSERT INTO game_officials (game_id, official_name)
+                   VALUES (?, ?) ON CONFLICT(game_id, official_name) DO NOTHING""",
+                (game_id, name),
+            )
+    except Exception as exc:
+        import logging
+        logging.getLogger("nba_api_source").warning(
+            "per-game detail fetch failed for %s: %s", game_id, exc)
+
+
+def _parse_nba_minutes(min_str) -> float | None:
+    """nba_api MIN is 'MM:SS' string; convert to float minutes."""
+    if not min_str:
+        return None
+    if ":" in str(min_str):
+        m, s = str(min_str).split(":")
+        return int(m) + int(s) / 60
+    try:
+        return float(min_str)
+    except (ValueError, TypeError):
+        return None

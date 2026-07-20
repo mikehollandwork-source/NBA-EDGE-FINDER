@@ -102,6 +102,47 @@ CREATE TABLE IF NOT EXISTS player_expected_minutes (
     PRIMARY KEY (game_id, player_id)
 );
 
+-- Player reference: position + height + season quality, used for the
+-- positional-matchup comparison, the height-differential feature, and
+-- star-weighting player form by season quality (usage-based). Refreshed
+-- periodically, not per game -- position/height rarely change mid-season.
+CREATE TABLE IF NOT EXISTS players (
+    player_id       TEXT PRIMARY KEY,
+    player_name     TEXT,
+    position        TEXT,      -- 'PG' | 'SG' | 'SF' | 'PF' | 'C' (best-effort bucket)
+    height_inches   REAL,
+    current_team    TEXT,
+    source          TEXT,
+    updated_at      TEXT
+);
+
+-- Officiating crew per game, from the box score officials list -- same
+-- place MLB's hp_umpire() reads from. Referee foul-tendency itself is
+-- computed on the fly from this + team_game_stats/player_game_stats
+-- (self-derived, like defense-vs-position), not stored separately.
+CREATE TABLE IF NOT EXISTS game_officials (
+    game_id         TEXT NOT NULL REFERENCES games(game_id),
+    official_name   TEXT NOT NULL,
+    PRIMARY KEY (game_id, official_name)
+);
+
+-- Real player-vs-player matchup data (season-aggregate, from nba_api's
+-- matchups endpoint) -- the PRIMARY h2h signal per the design, used when
+-- the possession sample is big enough to trust; blended with the
+-- self-derived defense-vs-position fallback otherwise. Refreshed
+-- periodically (season-aggregate, not per-game).
+CREATE TABLE IF NOT EXISTS player_matchups (
+    def_player_id       TEXT NOT NULL,
+    off_player_id        TEXT NOT NULL,
+    season               TEXT NOT NULL,
+    partial_possessions  REAL,
+    points_allowed       REAL,
+    fg_made_allowed      INTEGER,
+    fg_attempted_allowed INTEGER,
+    updated_at           TEXT,
+    PRIMARY KEY (def_player_id, off_player_id, season)
+);
+
 -- Any mismatch found between sources for the same game gets logged here
 -- rather than silently resolved, so it stays visible.
 CREATE TABLE IF NOT EXISTS reconciliation_log (
