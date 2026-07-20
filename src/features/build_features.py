@@ -5,8 +5,10 @@ rate/advanced stats (SOS + home/away adjusted), a position-by-position
 starter comparison (real h2h matchup data as primary, self-derived
 defense-vs-position as fallback, blended by sample-size confidence),
 star-weighted player form, bench contribution via expected minutes,
-height/speed differentials, rest/travel, referee tendency, and expected
-game pace.
+height/speed differentials, rest/travel, referee tendency, expected game
+pace, playstyle + what each team allows stylistically (self-derived, no
+new source), roster composition/size, and letdown/lookahead schedule-spot
+risk.
 
 Point-in-time throughout: every function takes `as_of` and only uses
 games/stats strictly before it, so a backtest never sees a game's own
@@ -35,6 +37,10 @@ DEFENSE_VS_POSITION_LOOKBACK_GAMES = 10   # how many recent games a team's DVP r
 DVP_SHRINKAGE_PRIOR_GAMES = 10            # shrink toward league avg by this many "phantom" games
 MATCHUP_TRUST_POSSESSIONS = 15            # real h2h data trusted fully at/above this sample
 STAR_QUALITY_FLOOR = 0.5                  # role players still count a little in form-weighting
+STYLE_LOOKBACK_GAMES = 10                 # longer window than TEAM_LOOKBACK_GAMES -- playstyle
+                                          # is a slower-moving identity than last-4-games form
+SCHEDULE_SPOT_LOOKAHEAD_DAYS = 2          # how far ahead we check for a "trap game" next opponent
+SCHEDULE_SPOT_NET_RATING_GAP = 8.0        # opponent-quality gap that flags a letdown/lookahead spot
 
 
 # --------------------------------------------------------------------------
@@ -140,6 +146,146 @@ def expected_game_pace(conn, home_team: str, away_team: str, as_of: str) -> floa
     home_pace = team_rate_stats(conn, home_team, as_of)["pace"]
     away_pace = team_rate_stats(conn, away_team, as_of)["pace"]
     return _avg([home_pace, away_pace])
+
+
+def schedule_spot(conn, team: str, game_date: str, as_of: str,
+                  current_opponent_net_rating: float | None) -> dict:
+    """Raw letdown/lookahead numbers: how much stronger the team's
+    previous opponent was (letdown risk -- emotional hangover from a
+    tough game) and how much stronger its NEXT scheduled opponent is
+    (lookahead/trap-game risk -- looking past tonight). Returns the raw
+    gaps and a simple threshold flag on each; the pick logic decides how
+    much weight to give it, this just measures it."""
+    prev = conn.execute(
+        """SELECT g.game_id, g.home_team, g.away_team FROM team_game_stats t
+           JOIN games g ON g.game_id = t.game_id
+           WHERE t.team = ? AND t.source = 'nba_api' AND g.game_date < ?
+           ORDER BY g.game_date DESC LIMIT 1""",
+        (team, game_date),
+    ).fetchone()
+    nxt = conn.execute(
+        """SELECT home_team, away_team FROM games
+           WHERE (home_team = ? OR away_team = ?) AND game_date > ?
+             AND game_date <= date(?, ?)
+           ORDER BY game_date ASC LIMIT 1""",
+        (team, team, game_date, game_date, f"+{SCHEDULE_SPOT_LOOKAHEAD_DAYS} day"),
+    ).fetchone()
+
+    prev_opp_rating = _opponent_net_rating_for_game(conn, prev, team) if prev else None
+    next_opp_rating = _team_current_net_rating(conn, nxt, team, as_of) if nxt else None
+
+    letdown_gap = (
+        prev_opp_rating - current_opponent_net_rating
+        if prev_opp_rating is not None and current_opponent_net_rating is not None else None
+    )
+    lookahead_gap = (
+        next_opp_rating - current_opponent_net_rating
+        if next_opp_rating is not None and current_opponent_net_rating is not None else None
+    )
+    return {
+        "prev_opponent_net_rating": prev_opp_rating,
+        "next_opponent_net_rating": next_opp_rating,
+        "letdown_gap": letdown_gap,
+        "letdown_risk": (letdown_gap or 0) >= SCHEDULE_SPOT_NET_RATING_GAP,
+        "lookahead_gap": lookahead_gap,
+        "lookahead_risk": (lookahead_gap or 0) >= SCHEDULE_SPOT_NET_RATING_GAP,
+    }
+
+
+def _opponent_net_rating_for_game(conn, game_row, team: str) -> float | None:
+    opp = game_row["away_team"] if game_row["home_team"] == team else game_row["home_team"]
+    row = conn.execute(
+        """SELECT net_rating FROM team_game_stats
+           WHERE game_id = ? AND team = ? AND source = 'nba_api'""",
+        (game_row["game_id"], opp),
+    ).fetchone()
+    return row["net_rating"] if row else None
+
+
+def _team_current_net_rating(conn, next_game_row, team: str, as_of: str) -> float | None:
+    opp = next_game_row["away_team"] if next_game_row["home_team"] == team else next_game_row["home_team"]
+    return team_rate_stats(conn, opp, as_of).get("net_rating")
+
+
+def team_playstyle_profile(conn, team: str, as_of: str, n_games: int = STYLE_LOOKBACK_GAMES) -> dict:
+    """How this team plays, as ratios rather than raw counts -- a slower-
+    moving identity than last-4-games form, so it uses a longer window.
+    Derived entirely from stats already ingested, no new data source."""
+    rows = team_recent_games(conn, team, as_of, n_games)
+    three_rate = _avg([r["fg3a"] / r["fga"] if r["fga"] else None for r in rows])
+    assist_rate = _avg([r["ast"] / r["fgm"] if r["fgm"] else None for r in rows])
+    oreb_rate = _avg([r["oreb"] / (r["oreb"] + r["dreb"]) if (r["oreb"] or r["dreb"]) else None
+                      for r in rows])
+    ft_rate = _avg([r["fta"] / r["fga"] if r["fga"] else None for r in rows])
+    tov_rate = _avg([r["tov"] / r["possessions"] if r["possessions"] else None for r in rows])
+    return {
+        "three_point_rate": three_rate, "assist_rate": assist_rate,
+        "offensive_rebound_rate": oreb_rate, "free_throw_rate": ft_rate,
+        "turnover_rate": tov_rate, "pace": _avg([r["pace"] for r in rows]),
+        "games_sampled": len(rows),
+    }
+
+
+def team_defense_allowed_profile(conn, team: str, as_of: str,
+                                 n_games: int = STYLE_LOOKBACK_GAMES) -> dict:
+    """Self-derived: what opponents' style stats have looked like AGAINST
+    this team recently (their 3PA rate, assist rate, OREB rate, pace when
+    playing this team) -- the counterpart to team_playstyle_profile, so a
+    team's own style can be compared against what an opponent typically
+    allows. Same self-derivation technique as defense_vs_position, just
+    team-wide instead of positional."""
+    rows = team_recent_games(conn, team, as_of, n_games)
+    opp_rows = []
+    for r in rows:
+        opp = r["away_team"] if r["team"] == r["home_team"] else r["home_team"]
+        opp_row = conn.execute(
+            """SELECT fga, fg3a, fgm, ast, oreb, dreb, fta, tov, possessions
+               FROM team_game_stats WHERE game_id = ? AND team = ? AND source = 'nba_api'""",
+            (r["game_id"], opp),
+        ).fetchone()
+        if opp_row:
+            opp_rows.append(opp_row)
+
+    three_rate = _avg([r["fg3a"] / r["fga"] if r["fga"] else None for r in opp_rows])
+    assist_rate = _avg([r["ast"] / r["fgm"] if r["fgm"] else None for r in opp_rows])
+    oreb_rate = _avg([r["oreb"] / (r["oreb"] + r["dreb"]) if (r["oreb"] or r["dreb"]) else None
+                      for r in opp_rows])
+    return {
+        "opp_three_point_rate_allowed": three_rate, "opp_assist_rate_allowed": assist_rate,
+        "opp_offensive_rebound_rate_allowed": oreb_rate, "games_sampled": len(opp_rows),
+    }
+
+
+def team_composition_profile(conn, team: str, as_of: str) -> dict:
+    """Roster shape: minutes-weighted average height, and how concentrated
+    minutes are among the starters vs. spread across the bench (rough
+    "small ball vs. traditional" / depth proxy) -- from height + minutes
+    data we already have, no new source."""
+    rows = conn.execute(
+        """SELECT p.player_id, AVG(p.minutes) AS avg_minutes, pl.height_inches
+           FROM player_game_stats p
+           JOIN games g ON g.game_id = p.game_id
+           LEFT JOIN players pl ON pl.player_id = p.player_id
+           WHERE p.team = ? AND p.source = 'nba_api' AND g.game_date < ?
+             AND g.game_date >= date(?, '-14 day')
+           GROUP BY p.player_id""",
+        (team, as_of, as_of),
+    ).fetchall()
+
+    total_minutes = sum(r["avg_minutes"] or 0 for r in rows)
+    height_weight = sum(r["avg_minutes"] or 0 for r in rows if r["height_inches"] is not None)
+    weighted_height = (
+        sum((r["height_inches"] or 0) * (r["avg_minutes"] or 0)
+            for r in rows if r["height_inches"] is not None) / height_weight
+        if height_weight else None
+    )
+    top5_minutes = sum(sorted((r["avg_minutes"] or 0 for r in rows), reverse=True)[:5])
+    starter_share = (top5_minutes / total_minutes) if total_minutes else None
+    return {
+        "minutes_weighted_height_inches": weighted_height,
+        "starter_minutes_share": starter_share,  # higher = more top-heavy, less bench depth
+        "players_sampled": len(rows),
+    }
 
 
 # --------------------------------------------------------------------------
@@ -436,10 +582,16 @@ def build_matchup_features(game_id: str, db_path=None, as_of: str | None = None)
     features = {
         "game_id": game_id, "as_of": as_of, "home_team": home, "away_team": away,
         "team": {}, "positions": {}, "bench": {}, "rest_travel": {}, "referee": {},
+        "playstyle": {}, "composition": {}, "schedule_spot": {},
         "expected_pace": expected_game_pace(conn, home, away, as_of),
     }
 
-    for side, team in (("home", home), ("away", away)):
+    home_net_rating = team_rate_stats(conn, home, as_of).get("net_rating")
+    away_net_rating = team_rate_stats(conn, away, as_of).get("net_rating")
+
+    for side, team, opponent_net_rating in (
+        ("home", home, away_net_rating), ("away", away, home_net_rating),
+    ):
         features["team"][side] = {
             "overall": team_rate_stats(conn, team, as_of),
             "home_split" if side == "home" else "away_split":
@@ -448,6 +600,13 @@ def build_matchup_features(game_id: str, db_path=None, as_of: str | None = None)
         }
         features["rest_travel"][side] = rest_and_travel(conn, team, game["game_date"])
         features["bench"][side] = bench_contribution(conn, team, as_of)
+        features["playstyle"][side] = {
+            "own": team_playstyle_profile(conn, team, as_of),
+            "allowed": team_defense_allowed_profile(conn, team, as_of),
+        }
+        features["composition"][side] = team_composition_profile(conn, team, as_of)
+        features["schedule_spot"][side] = schedule_spot(
+            conn, team, game["game_date"], as_of, opponent_net_rating)
 
     home_starters = projected_starters(conn, home, as_of)
     away_starters = projected_starters(conn, away, as_of)
