@@ -1,0 +1,31 @@
+name: Diagnose basketball-reference Roster Structure
+
+# One-off diagnostic, NOT part of the regular pipeline -- the first live
+# run of persist_season_rosters() found 0 players per team despite real
+# rows in the table, meaning the roster page identifies players
+# differently than the box score page does. See
+# src/cli/diagnose_bref_roster.py.
+on:
+  workflow_dispatch:
+    inputs:
+      team:
+        description: "bref team abbreviation to check"
+        default: "LAL"
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        run: python -m src.cli.diagnose_bref_roster --team "${{ github.event.inputs.team }}"

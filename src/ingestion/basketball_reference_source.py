@@ -194,12 +194,29 @@ def _read_stat_table(table) -> pd.DataFrame:
     and dropping the 'Reserves' divider row and 'Team Totals' summary
     row -- both are real <tr> rows in the HTML but not players. Verified
     column names (MP/FG/FGA/.../+/- for basic, TS%/.../ORtg/DRtg/BPM for
-    advanced) against a real live box score page."""
+    advanced) against a real live box score page.
+
+    A DNP player's stat cells hold text ('Did Not Play', 'Did Not Dress',
+    'Not With Team', ...) instead of numbers -- confirmed against a real
+    live run, where this broke box score persistence for 87/100 games.
+    pd.read_html can't force a column to numeric when ANY cell in it is
+    text, so it silently keeps the WHOLE column as strings (even the
+    genuinely numeric cells, as their string repr) -- then .sum() on that
+    column does STRING CONCATENATION, not addition (verified locally:
+    ['22','13','Did Not Play'].sum() -> '2213Did Not Play', matching the
+    exact garbled values seen in the live log). Coercing every stat
+    column to numeric here (DNP text -> NaN) fixes both the per-player
+    write path and the team-total sum in one place; MP and the name
+    column are left alone since they're legitimately non-numeric."""
     df = pd.read_html(io.StringIO(str(table)))[0]
     df.columns = df.columns.get_level_values(-1)
     name_col = df.columns[0]  # 'Starters'
     df = df[~df[name_col].isin(["Reserves", "Team Totals"])]
     df = df.dropna(subset=[name_col]).reset_index(drop=True)
+    for col in df.columns:
+        if col in (name_col, "MP"):
+            continue
+        df[col] = pd.to_numeric(df[col], errors="coerce")
     return df
 
 
