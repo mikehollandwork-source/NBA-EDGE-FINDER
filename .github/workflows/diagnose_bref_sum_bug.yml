@@ -1,0 +1,30 @@
+name: Diagnose basketball-reference Sum Bug
+
+# One-off diagnostic, NOT part of the regular pipeline -- the DNP fix
+# passed a local synthetic test but real production data still shows
+# absurd team totals (digit-concatenation signature). Runs the actual
+# _read_stat_table function against a real page that showed the bug.
+on:
+  workflow_dispatch:
+    inputs:
+      game_id:
+        description: "bref box score game id, e.g. 202510220DAL"
+        default: "202510220DAL"
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        run: python -m src.cli.diagnose_bref_sum_bug --game-id "${{ github.event.inputs.game_id }}"
