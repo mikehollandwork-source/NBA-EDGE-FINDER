@@ -1,0 +1,27 @@
+name: Diagnose nba_api Reachability
+
+# One-off diagnostic, NOT part of the regular pipeline -- checks whether
+# stats.nba.com is reachable at all from this runner's IP range before
+# deciding whether to redesign around nba_api being blocked. See
+# src/cli/diagnose_nba_api.py for what each probe checks. Short timeout
+# so it fails fast instead of burning the full retry/backoff budget.
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probes
+        run: python -m src.cli.diagnose_nba_api

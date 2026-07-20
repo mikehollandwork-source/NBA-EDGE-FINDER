@@ -333,6 +333,13 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
     conn = get_connection(db_path) if db_path else get_connection()
     team_log = fetch_season_team_log_chunked(season, date_from, date_to)
 
+    if team_log.empty:
+        # Every chunk failed (see fetch_season_team_log_chunked) -- an
+        # empty DataFrame has no GAME_ID column at all, so groupby()
+        # below would raise KeyError rather than just doing nothing.
+        conn.close()
+        raise RuntimeError("nba_api: every chunk of the team log pull failed, nothing to persist")
+
     # LeagueGameFinder gives one row per team per game (two rows share a
     # game_id) -- group them so home/away and both scores can be set
     # together rather than inserting a half-populated game row per row.
