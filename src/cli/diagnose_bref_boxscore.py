@@ -28,17 +28,24 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup, Comment
 
-from src.ingestion.basketball_reference_source import fetch_month_schedule
+from src.ingestion.basketball_reference_source import TEAM_ABBR_TO_NBA, fetch_month_schedule
+from src.ingestion.nba_teams import name_to_abbr
 
 BASE_URL = "https://www.basketball-reference.com"
 HEADERS = {"User-Agent": "Mozilla/5.0 (research script; contact via repo owner)"}
+
+# TEAM_ABBR_TO_NBA maps bref's abbr -> nba.com's for the 3 that differ
+# (BRK->BKN, PHO->PHX, CHO->CHA); invert it to go the other direction.
+NBA_TO_BREF_ABBR = {nba: bref for bref, nba in TEAM_ABBR_TO_NBA.items()}
 
 
 def pick_real_game_id() -> str:
     """Find one real, already-completed game from the schedule (proven
     reachable in the live backtest run) rather than guessing a date/team
     combo -- BR's box score game id is YYYYMMDD0<home team's OWN bref
-    abbreviation>, which can differ from nba.com's (BRK/PHO/CHO)."""
+    abbreviation>. The schedule table's Home/Neutral column is a full
+    team name ("Brooklyn Nets"), not an abbreviation -- first bug found
+    here: assumed it was already an abbreviation, it isn't."""
     for month in ("january", "december", "november", "october"):
         sched = fetch_month_schedule(2026, month)
         if sched.empty:
@@ -51,8 +58,12 @@ def pick_real_game_id() -> str:
             continue
         row = played.iloc[0]
         game_date = pd.to_datetime(row["Date"]).strftime("%Y%m%d")
-        home_abbr = row["Home/Neutral"]  # BR's own abbreviation, unnormalized
-        return f"{game_date}0{home_abbr}"
+        home_name = row["Home/Neutral"]
+        nba_abbr = name_to_abbr(home_name)
+        if not nba_abbr:
+            raise RuntimeError(f"Couldn't resolve team name {home_name!r} to an abbreviation")
+        bref_abbr = NBA_TO_BREF_ABBR.get(nba_abbr, nba_abbr)
+        return f"{game_date}0{bref_abbr}"
     raise RuntimeError("Couldn't find a played game in any checked month's schedule")
 
 
