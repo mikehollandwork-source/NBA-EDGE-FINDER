@@ -4,16 +4,14 @@ A system to predict NBA game winners from recent team/player performance,
 acting as our own lines-maker rather than comparing against a sportsbook.
 Backtested against the 2025-26 season until results hit target.
 
-Status: **ingestion, market-analysis, and hourly automation code
-written, not yet run against live data.** The Claude Code session that
-built this is behind a network policy that blocks every external host
-the project needs (stats.nba.com, balldontlie.io,
-basketball-reference.com, the-odds-api.com, polymarket.com) — see
-"Known blocker" below. The GitHub Actions workflow itself runs on
-GitHub's own infrastructure and is NOT behind that block, so once the
-two setup steps in "Automation" below are done, the hourly job should
-run for real even though it couldn't be tested from the Claude session.
-**The full pipeline is now built end-to-end**: feature engineering
+Status: **full pipeline built and run against real live infrastructure
+via GitHub Actions.** Several real bugs were found and fixed this way
+(nba_api timeout/retry tuning, balldontlie partial-commit handling,
+pandas 3.0's `read_html` API change, a numpy-scalar/sqlite BLOB-storage
+bug) — see "Known blocker" below for the big one: **stats.nba.com is
+confirmed unreachable from GitHub Actions.**
+
+**The full pipeline is built end-to-end**: feature engineering
 (`src/features/build_features.py` — team rate/advanced stats, SOS,
 position-by-position h2h, star-weighted form, playstyle, composition,
 rest/travel, referees, schedule-spot risk), the win-condition/signal
@@ -21,50 +19,54 @@ layer (`src/models/signals.py` — composite scorecard + regression-fit
 win condition, Stats + Consistency signals, all with toggleable stat
 combinations), `src/models/win_predictor.py` (writes predictions), and
 `src/backtest/run_backtest.py` (walk-forward backtest with ROI, ranking
-several stat combinations against each other). All of it verified
-end-to-end against synthetic data with a planted signal — 9/10 accuracy
-on held-out games, confirming the pipeline finds real signal, not just
-runs without crashing. Caught and fixed two real bugs this way (an
-aggregate SQL query missing `GROUP BY`, and a hardcoded `db_path=None`
-that silently pointed one function at the wrong database) since live
-sources are still blocked here — see "Known blocker" below.
+several stat combinations against each other).
 
-**Not yet done from an actual live run**: the first full-season backfill
-(`src/cli/backfill_season.py`) and the real walk-forward backtest itself
-both need real network access, which is why there's an on-demand GitHub
-Actions workflow (`.github/workflows/backtest.yml`) to run them — see
-"Running the season backtest" below.
+## Known blocker: stats.nba.com is unreachable from GitHub Actions
 
-## Known blocker
+Three live backtest runs against real GitHub Actions infrastructure
+progressively surfaced this: **every single request to stats.nba.com
+from a GitHub Actions runner hangs to the full timeout with zero
+response** — confirmed with a diagnostic that bypassed the `nba_api`
+library entirely and hit the host directly (`src/cli/diagnose_nba_api.py`,
+`.github/workflows/diagnose_nba_api.yml`). A baseline request to an
+unrelated host succeeded instantly in the same run, ruling out a general
+network problem. This is the signature of stats.nba.com blocking/
+dropping traffic from GitHub Actions' cloud IP range — not a timeout,
+retry, or payload-size problem, and not something fixable from this
+project's code.
 
-This Claude Code Remote environment's egress policy denies outbound
-connections to every data source this project needs. Confirmed via the
-proxy status endpoint (403 policy denial on each host). Nothing here can
-be tested end-to-end from this session — but note the GitHub Actions
-workflow runs on GitHub's own infrastructure and is NOT behind this
-block, so the hourly job should work for real regardless (see
-"Automation"). Hosts involved, if you do want to unblock this session
-too: `stats.nba.com`, `balldontlie.io` (or `api.balldontlie.io`),
-`basketball-reference.com`, `the-odds-api.com`, `polymarket.com`
-(`gamma-api.polymarket.com`, `clob.polymarket.com`), `espn.com`
-(`site.api.espn.com`, `sports.core.api.espn.com`), `pinnacle.com`
-(`guest.api.arcadia.pinnacle.com`), `kalshi.com`
-(`api.elections.kalshi.com`), `covers.com`, `scoresandodds.com`,
-`vsin.com` (`data.vsin.com`), `reddit.com`, `wikimedia.org`. See
-https://code.claude.com/docs/en/claude-code-on-the-web for how
-environment network policy is configured.
+**Consequence — primary source switched to basketball-reference:**
+`nba_api` was the original PRIMARY source (real player h2h matchups,
+precise advanced ratings, speed/distance tracking, reliable positions).
+Since it can't run unattended on GitHub Actions, `basketball_reference_source.py`
+now supplies team + player box scores, advanced stats (`ORtg`/`DRtg` per
+player, verified against a real live page), officials, and roster
+positions — every `build_features.py` query filters on `source='bref'`
+(see that module's docstring). `nba_api` is now **best-effort and OFF by
+default**: `backfill_season.py --include-nba-api` still pulls it, but
+only useful run from a machine with a non-cloud IP (e.g. locally) —
+`balldontlie` discovers games/schedule either way, so a fully-offline-
+from-nba_api backfill still works.
 
-Because of this, the ingestion modules below are written against each
-source's documented API/page structure but **not verified against real
-responses** — each file's docstring flags the specific assumptions
-(column names, table ids, response shape) that need checking first.
+**What's lost with this switch** (no free replacement exists for
+either): real player-vs-player h2h matchup data (falls back to the
+defense-vs-position estimate only, which the design already treats as a
+fallback tier — just never the *only* tier before) and SportVU speed/
+distance tracking.
+
+Because basketball-reference has no official API, the ingestion modules
+below are written against the page structures verified live during this
+project's debugging session (box score table ids/columns, officials
+text, response encoding) — flagged per-function where verified vs.
+still-assumed (the roster/position page specifically wasn't diagnosed
+live, only the box score page was; spot-check it on the first real run).
 
 ## Design decisions locked in
 
 - **Stat sources (cross-checked against each other):**
-  - [`nba_api`](https://github.com/swar/nba_api) — stats.nba.com, primary source for detailed box scores / advanced stats
-  - [balldontlie.io](https://www.balldontlie.io/) — free REST API, reliability cross-check
-  - Basketball-Reference (scraped) — historical depth, third cross-check
+  - Basketball-Reference (scraped) — **primary source** for team/player box scores, advanced stats, officials, and roster positions, since it's the only one of the three confirmed reachable from GitHub Actions (see "Known blocker" above)
+  - [balldontlie.io](https://www.balldontlie.io/) — free REST API, primary game/schedule discoverer (games table) + reliability cross-check
+  - [`nba_api`](https://github.com/swar/nba_api) — stats.nba.com, richer data (real h2h matchups, precise ratings, speed/distance) but confirmed unreachable from GitHub Actions; best-effort/off by default, opt in with `--include-nba-api` when running locally
 - **Market/odds sources, all free and no signup except where noted:**
   - [ESPN](https://www.espn.com/) hidden scoreboard/odds API — real open→current moneyline for nearly every game, no key. Primary line source.
   - [Pinnacle](https://www.pinnacle.com/) guest API — the "sharp book" reference line.

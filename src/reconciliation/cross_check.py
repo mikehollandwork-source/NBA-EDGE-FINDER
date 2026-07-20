@@ -1,15 +1,21 @@
 """Cross-checks the same game/stat across sources instead of trusting one.
 
-Any disagreement (e.g. nba_api and balldontlie report different points
+Any disagreement (e.g. bref and balldontlie report different points
 for the same team in the same game) gets written to reconciliation_log
 rather than silently auto-resolved, so it stays visible and reviewable
 before feature engineering runs on top of it.
 
 Policy on disagreement (confirm/revisit with user once real mismatches
-show up): nba_api is treated as the tiebreaker source when two sources
-disagree, since it's the NBA's own data -- but the mismatch is always
-logged either way, and feature engineering should be able to flag/skip
-games with unresolved conflicts rather than pick silently.
+show up): basketball-reference (source='bref') is treated as the
+tiebreaker source when two sources disagree -- it's the PRIMARY source
+every feature/signal query filters on (see build_features.py's module
+docstring: stats.nba.com is confirmed unreachable from GitHub Actions,
+so nba_api data mostly won't exist in automated runs at all). The
+mismatch is always logged either way, and feature engineering should be
+able to flag/skip games with unresolved conflicts rather than pick
+silently. TIEBREAKER_SOURCE isn't consulted by the reconcile functions
+below yet -- they only log mismatches -- documented here as the intended
+policy for whenever that resolution logic gets built.
 """
 
 from datetime import datetime, timezone
@@ -21,7 +27,7 @@ from src.db.connection import get_connection
 COMPARABLE_TEAM_FIELDS = ["points"]
 COMPARABLE_PLAYER_FIELDS = ["minutes", "points"]
 
-TIEBREAKER_SOURCE = "nba_api"
+TIEBREAKER_SOURCE = "bref"
 
 
 def reconcile_team_stats(db_path=None):

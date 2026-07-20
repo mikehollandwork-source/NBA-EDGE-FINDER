@@ -21,6 +21,16 @@ and the win-condition/signal logic, built separately per the user's
 
 NOT YET TESTED against live data -- depends on every ingestion source,
 all of which are blocked by this environment's egress policy.
+
+PRIMARY SOURCE: every query below filters team_game_stats/player_game_stats
+to source = 'bref' (basketball-reference). This was 'bref' originally,
+but stats.nba.com is confirmed unreachable from GitHub Actions (silently
+blocks/drops traffic from its cloud IP range -- see nba_api_source.py's
+module docstring and the diagnose_nba_api.py probe results), so
+basketball_reference_source.py's box score scraper is now the primary
+source for the automation to actually work. If this ever needs to change
+again, 'bref' is a literal in ~17 SQL strings here, not a single constant
+-- grep for "source = 'bref'" to find every call site.
 """
 
 from __future__ import annotations
@@ -76,7 +86,7 @@ def team_recent_games(conn, team: str, as_of: str, n_games: int = TEAM_LOOKBACK_
     return conn.execute(
         """SELECT t.*, g.game_date, g.home_team, g.away_team
            FROM team_game_stats t JOIN games g ON g.game_id = t.game_id
-           WHERE t.team = ? AND t.source = 'nba_api' AND g.game_date < ?
+           WHERE t.team = ? AND t.source = 'bref' AND g.game_date < ?
            ORDER BY g.game_date DESC LIMIT ?""",
         (team, as_of, n_games),
     ).fetchall()
@@ -112,7 +122,7 @@ def strength_of_schedule(conn, team: str, as_of: str, n_games: int = TEAM_LOOKBA
         opp = r["away_team"] if r["team"] == r["home_team"] else r["home_team"]
         opp_row = conn.execute(
             """SELECT net_rating FROM team_game_stats
-               WHERE game_id = ? AND team = ? AND source = 'nba_api'""",
+               WHERE game_id = ? AND team = ? AND source = 'bref'""",
             (r["game_id"], opp),
         ).fetchone()
         if opp_row and opp_row["net_rating"] is not None:
@@ -126,7 +136,7 @@ def rest_and_travel(conn, team: str, game_date: str) -> dict:
     prev = conn.execute(
         """SELECT g.game_date, g.home_team, g.away_team FROM team_game_stats t
            JOIN games g ON g.game_id = t.game_id
-           WHERE t.team = ? AND t.source = 'nba_api' AND g.game_date < ?
+           WHERE t.team = ? AND t.source = 'bref' AND g.game_date < ?
            ORDER BY g.game_date DESC LIMIT 1""",
         (team, game_date),
     ).fetchone()
@@ -159,7 +169,7 @@ def schedule_spot(conn, team: str, game_date: str, as_of: str,
     prev = conn.execute(
         """SELECT g.game_id, g.home_team, g.away_team FROM team_game_stats t
            JOIN games g ON g.game_id = t.game_id
-           WHERE t.team = ? AND t.source = 'nba_api' AND g.game_date < ?
+           WHERE t.team = ? AND t.source = 'bref' AND g.game_date < ?
            ORDER BY g.game_date DESC LIMIT 1""",
         (team, game_date),
     ).fetchone()
@@ -196,7 +206,7 @@ def _opponent_net_rating_for_game(conn, game_row, team: str) -> float | None:
     opp = game_row["away_team"] if game_row["home_team"] == team else game_row["home_team"]
     row = conn.execute(
         """SELECT net_rating FROM team_game_stats
-           WHERE game_id = ? AND team = ? AND source = 'nba_api'""",
+           WHERE game_id = ? AND team = ? AND source = 'bref'""",
         (game_row["game_id"], opp),
     ).fetchone()
     return row["net_rating"] if row else None
@@ -240,7 +250,7 @@ def team_defense_allowed_profile(conn, team: str, as_of: str,
         opp = r["away_team"] if r["team"] == r["home_team"] else r["home_team"]
         opp_row = conn.execute(
             """SELECT fga, fg3a, fgm, ast, oreb, dreb, fta, tov, possessions
-               FROM team_game_stats WHERE game_id = ? AND team = ? AND source = 'nba_api'""",
+               FROM team_game_stats WHERE game_id = ? AND team = ? AND source = 'bref'""",
             (r["game_id"], opp),
         ).fetchone()
         if opp_row:
@@ -266,7 +276,7 @@ def team_composition_profile(conn, team: str, as_of: str) -> dict:
            FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
            LEFT JOIN players pl ON pl.player_id = p.player_id
-           WHERE p.team = ? AND p.source = 'nba_api' AND g.game_date < ?
+           WHERE p.team = ? AND p.source = 'bref' AND g.game_date < ?
              AND g.game_date >= date(?, '-14 day')
            GROUP BY p.player_id""",
         (team, as_of, as_of),
@@ -298,7 +308,7 @@ def league_average_player_rates(conn, as_of: str, position: str | None = None) -
     not just his own history."""
     query = """SELECT p.points, p.reb, p.ast, p.stl, p.blk, p.tov, p.minutes
                FROM player_game_stats p JOIN games g ON g.game_id = p.game_id
-               WHERE p.source = 'nba_api' AND g.game_date < ? AND p.minutes > 0"""
+               WHERE p.source = 'bref' AND g.game_date < ? AND p.minutes > 0"""
     params = [as_of]
     if position:
         query += """ AND p.player_id IN (SELECT player_id FROM players WHERE position = ?)"""
@@ -319,7 +329,7 @@ def player_recent_games(conn, player_id: str, as_of: str, n_games: int = PLAYER_
     return conn.execute(
         """SELECT p.*, g.game_date FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
-           WHERE p.player_id = ? AND p.source = 'nba_api' AND g.game_date < ?
+           WHERE p.player_id = ? AND p.source = 'bref' AND g.game_date < ?
            ORDER BY g.game_date DESC LIMIT ?""",
         (player_id, as_of, n_games),
     ).fetchall()
@@ -332,7 +342,7 @@ def player_form(conn, player_id: str, as_of: str) -> dict:
     season = conn.execute(
         """SELECT p.points, p.reb, p.ast, p.stl, p.blk, p.tov, p.minutes
            FROM player_game_stats p JOIN games g ON g.game_id = p.game_id
-           WHERE p.player_id = ? AND p.source = 'nba_api' AND g.game_date < ?""",
+           WHERE p.player_id = ? AND p.source = 'bref' AND g.game_date < ?""",
         (player_id, as_of),
     ).fetchall()
 
@@ -360,7 +370,7 @@ def star_quality_weight(conn, player_id: str, as_of: str) -> float:
     row = conn.execute(
         """SELECT AVG(p.minutes) AS avg_min FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
-           WHERE p.player_id = ? AND p.source = 'nba_api' AND g.game_date < ?""",
+           WHERE p.player_id = ? AND p.source = 'bref' AND g.game_date < ?""",
         (player_id, as_of),
     ).fetchone()
     avg_minutes = (row["avg_min"] if row else None) or 0
@@ -399,7 +409,7 @@ def projected_starters(conn, team: str, as_of: str, n_games: int = 5) -> dict:
            FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
            LEFT JOIN players pl ON pl.player_id = p.player_id
-           WHERE p.team = ? AND p.source = 'nba_api' AND g.game_date < ?
+           WHERE p.team = ? AND p.source = 'bref' AND g.game_date < ?
              AND p.is_starter = 1
            ORDER BY g.game_date DESC LIMIT ?""",
         (team, as_of, n_games * 5),
@@ -427,7 +437,7 @@ def bench_contribution(conn, team: str, as_of: str) -> dict:
     roster = conn.execute(
         """SELECT DISTINCT p.player_id FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
-           WHERE p.team = ? AND p.source = 'nba_api' AND g.game_date < ?
+           WHERE p.team = ? AND p.source = 'bref' AND g.game_date < ?
              AND g.game_date >= date(?, '-14 day')""",
         (team, as_of, as_of),
     ).fetchall()
@@ -465,11 +475,11 @@ def defense_vs_position(conn, team: str, position: str, as_of: str,
     rows = conn.execute(
         """SELECT p.points, p.minutes FROM player_game_stats p
            JOIN games g ON g.game_id = p.game_id
-           WHERE p.source = 'nba_api' AND g.game_date < ?
+           WHERE p.source = 'bref' AND g.game_date < ?
              AND p.team != ? AND p.minutes > 0
              AND g.game_id IN (
                  SELECT game_id FROM team_game_stats
-                 WHERE team = ? AND source = 'nba_api'
+                 WHERE team = ? AND source = 'bref'
                  ORDER BY (SELECT game_date FROM games WHERE games.game_id = team_game_stats.game_id) DESC
                  LIMIT ?
              )
@@ -544,14 +554,14 @@ def referee_crew_tendency(conn, official_names: list[str], as_of: str) -> dict:
     ph = ",".join("?" * len(game_ids))
     crew_fouls = conn.execute(
         f"""SELECT AVG(pf) AS avg_pf FROM team_game_stats
-            WHERE game_id IN ({ph}) AND source = 'nba_api'""",
+            WHERE game_id IN ({ph}) AND source = 'bref'""",
         game_ids,
     ).fetchone()
 
     league_fouls = conn.execute(
         """SELECT AVG(t.pf) AS avg_pf FROM team_game_stats t
            JOIN games g ON g.game_id = t.game_id
-           WHERE t.source = 'nba_api' AND g.game_date < ?""",
+           WHERE t.source = 'bref' AND g.game_date < ?""",
         (as_of,),
     ).fetchone()
 

@@ -47,6 +47,21 @@ SOURCE_NAME = "nba_api"
 log = logging.getLogger("nba_api_source")
 
 
+def _num(val):
+    """pandas/numpy scalar types (numpy.int64, numpy.float64, ...) --
+    what every numeric column of an nba_api DataFrame row actually holds
+    -- aren't understood by sqlite3's default type adapter -- it silently
+    stores them as a BLOB (via the buffer protocol) instead of an
+    INTEGER/REAL, with no error. Caught this via a DB-write smoke test
+    against basketball_reference_source.py's parallel code, not assumed
+    fine here just because nba_api's own live runs never got far enough
+    to surface it. .item() converts a numpy scalar to the equivalent
+    native Python type."""
+    if pd.isna(val):
+        return None
+    return val.item() if hasattr(val, "item") else val
+
+
 def _sleep():
     time.sleep(REQUEST_DELAY_SECONDS)
 
@@ -240,8 +255,8 @@ def persist_matchups_for_defenders(defender_ids: list[str], season: str, db_path
                        updated_at = excluded.updated_at""",
                 (
                     def_id, str(row.get("OFF_PLAYER_ID")), season,
-                    row.get("PARTIAL_POSS"), row.get("PLAYER_PTS"),
-                    row.get("MATCHUP_FGM"), row.get("MATCHUP_FGA"), now,
+                    _num(row.get("PARTIAL_POSS")), _num(row.get("PLAYER_PTS")),
+                    _num(row.get("MATCHUP_FGM")), _num(row.get("MATCHUP_FGA")), now,
                 ),
             )
     conn.commit()
@@ -365,7 +380,7 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
                    status = excluded.status""",
             (game_id, season, home_row["GAME_DATE"],
              home_row["TEAM_ABBREVIATION"], away_row["TEAM_ABBREVIATION"],
-             home_row.get("PTS"), away_row.get("PTS")),
+             _num(home_row.get("PTS")), _num(away_row.get("PTS"))),
         )
 
         for row, is_home in ((home_row, 1), (away_row, 0)):
@@ -377,10 +392,10 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
                    ON CONFLICT(game_id, team, source) DO NOTHING""",
                 (
                     game_id, row["TEAM_ABBREVIATION"], SOURCE_NAME, is_home,
-                    row.get("PTS"), row.get("FGM"), row.get("FGA"),
-                    row.get("FG3M"), row.get("FG3A"), row.get("FTM"), row.get("FTA"),
-                    row.get("OREB"), row.get("DREB"), row.get("REB"), row.get("AST"),
-                    row.get("STL"), row.get("BLK"), row.get("TOV"), row.get("PF"),
+                    _num(row.get("PTS")), _num(row.get("FGM")), _num(row.get("FGA")),
+                    _num(row.get("FG3M")), _num(row.get("FG3A")), _num(row.get("FTM")), _num(row.get("FTA")),
+                    _num(row.get("OREB")), _num(row.get("DREB")), _num(row.get("REB")), _num(row.get("AST")),
+                    _num(row.get("STL")), _num(row.get("BLK")), _num(row.get("TOV")), _num(row.get("PF")),
                 ),
             )
 
@@ -419,12 +434,12 @@ def _persist_game_detail(conn, game_id: str, home_team: str, away_team: str):
                     team_abbr, SOURCE_NAME, is_home,
                     int(bool(row.get("START_POSITION"))),
                     "dnp" if row.get("COMMENT") and not row.get("MIN") else "active",
-                    _parse_nba_minutes(row.get("MIN")), row.get("PTS"),
-                    row.get("FGM"), row.get("FGA"), row.get("FG3M"), row.get("FG3A"),
-                    row.get("FTM"), row.get("FTA"), row.get("OREB"), row.get("DREB"),
-                    row.get("REB"), row.get("AST"), row.get("STL"), row.get("BLK"),
-                    row.get("TOV" if "TOV" in row else "TO"), row.get("PF"),
-                    row.get("PLUS_MINUS"),
+                    _parse_nba_minutes(row.get("MIN")), _num(row.get("PTS")),
+                    _num(row.get("FGM")), _num(row.get("FGA")), _num(row.get("FG3M")), _num(row.get("FG3A")),
+                    _num(row.get("FTM")), _num(row.get("FTA")), _num(row.get("OREB")), _num(row.get("DREB")),
+                    _num(row.get("REB")), _num(row.get("AST")), _num(row.get("STL")), _num(row.get("BLK")),
+                    _num(row.get("TOV" if "TOV" in row else "TO")), _num(row.get("PF")),
+                    _num(row.get("PLUS_MINUS")),
                 ),
             )
 
@@ -434,8 +449,8 @@ def _persist_game_detail(conn, game_id: str, home_team: str, away_team: str):
                        possessions = ?, off_rating = ?, def_rating = ?,
                        net_rating = ?, pace = ?
                    WHERE game_id = ? AND team = ? AND source = ?""",
-                (row.get("POSS"), row.get("OFF_RATING"), row.get("DEF_RATING"),
-                 row.get("NET_RATING"), row.get("PACE"),
+                (_num(row.get("POSS")), _num(row.get("OFF_RATING")), _num(row.get("DEF_RATING")),
+                 _num(row.get("NET_RATING")), _num(row.get("PACE")),
                  game_id, row["TEAM_ABBREVIATION"], SOURCE_NAME),
             )
 

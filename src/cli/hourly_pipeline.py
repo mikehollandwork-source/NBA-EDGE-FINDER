@@ -31,7 +31,6 @@ from src.ingestion import (
     basketball_reference_source,
     espn_source,
     kalshi_source,
-    nba_api_source,
     odds_api_source,
     pinnacle_source,
     polymarket_source,
@@ -71,12 +70,6 @@ def ingest_recent_results(db_path=None):
     today = datetime.now(timezone.utc).date()
     future_end = today + timedelta(days=FUTURE_LOOKAHEAD_DAYS)
 
-    nba_api_source.persist_season(
-        SEASON_LABEL,
-        date_from=start.strftime("%m/%d/%Y"),
-        date_to=end.strftime("%m/%d/%Y"),
-        db_path=db_path,
-    )
     # balldontlie's games endpoint returns unplayed games too (status
     # != 'Final'), which is what seeds `games` rows for the upcoming
     # week -- without this, an early odds/Polymarket snapshot for a
@@ -102,6 +95,11 @@ def ingest_recent_results(db_path=None):
     basketball_reference_source.persist_season_schedule(
         season_end_year=int(SEASON_LABEL[:4]) + 1, season_label=SEASON_LABEL, db_path=db_path,
     )
+    # PRIMARY source for actual stats (see build_features.py's module
+    # docstring: stats.nba.com is confirmed unreachable from GitHub
+    # Actions). Only fetches box scores for games it doesn't already
+    # have -- cheap to call every hour, most games already have data.
+    basketball_reference_source.persist_season_boxscores(SEASON_LABEL, db_path=db_path)
 
 
 def snapshot_market_data(db_path=None):
