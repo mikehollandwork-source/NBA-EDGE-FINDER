@@ -344,6 +344,22 @@ def _persist_team_and_players(conn, game_id: str, team_abbr: str, is_home: int, 
     totals = {key: float(basic[col].sum()) if col in basic.columns else 0.0
               for key, col in _BASIC_TOTAL_COLS.items()}
 
+    # A live run showed team point totals in the sextillions for ~13% of
+    # games -- the exact digit-concatenation signature of the DNP/string
+    # bug this module already fixed once, but re-fetching those SAME
+    # games afterward parsed cleanly with the identical code, ruling out
+    # a parsing bug. That points to a transient/flaky response under
+    # sustained scraping load (100 games x ~1 request each, 2s apart)
+    # rather than something fixable in the parsing logic itself. Refuse
+    # to write an implausible total rather than silently corrupt the DB
+    # -- real NBA team totals are never outside this range -- so a flaky
+    # fetch gets skipped-and-retried (via persist_season_boxscores's
+    # already-has-data check on a later run) instead of poisoning it.
+    if not (40 <= totals["pts"] <= 260):
+        raise RuntimeError(
+            f"Implausible team points total for {game_id}/{team_abbr}: {totals['pts']} -- "
+            f"likely a flaky/corrupted fetch, not a real game result. Refusing to persist it.")
+
     conn.execute(
         """INSERT INTO team_game_stats
            (game_id, team, source, is_home, points, fgm, fga, fg3m, fg3a,
