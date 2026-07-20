@@ -1,0 +1,28 @@
+name: Diagnose SBR Odds Download Link
+
+# One-off diagnostic, NOT part of the regular pipeline -- SBR historical
+# odds files were always documented as a manual download since this
+# project had no confirmed URL and no live network access to check.
+# GitHub Actions has real internet access, so this checks the actual
+# site structure to find the real download link before trying to fetch
+# a season file automatically. See src/cli/diagnose_sbr_odds.py.
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        run: python -m src.cli.diagnose_sbr_odds
