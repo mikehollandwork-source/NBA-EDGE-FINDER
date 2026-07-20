@@ -3,18 +3,19 @@
 Used as a cross-check source for games/scores/basic box scores against
 nba_api and Basketball-Reference.
 
-NOT YET TESTED against live data -- balldontlie.io is currently blocked
-by this environment's egress policy.
-
-NOTE on the host/auth: balldontlie has changed its API shape over time.
-As of this writing the documented free-tier host is api.balldontlie.io/v1
-with an API key (free signup) sent as an Authorization header -- NOT the
-earlier no-auth www.balldontlie.io/api/v1 host some older tutorials
-reference. Verify this against https://docs.balldontlie.io once network
-access is available; BALLDONTLIE_API_KEY should be set in .env either way
-since the free tier still requires a key.
+NOTE on the host/auth: the api.balldontlie.io/v1 host + Authorization-
+header key was confirmed correct on the first live backfill -- the
+/games endpoint works fine. HOWEVER /stats returned 401 Unauthorized on
+that same run with the same key, which /games accepted -- since the key
+itself is clearly valid (it worked elsewhere), this looks like the free
+tier not including per-game player stats rather than an auth format
+bug. Not confirmed against balldontlie's pricing docs (no network
+access from this session) -- if a paid tier turns out to be required,
+persist_season() below still gets games/scores from the free tier and
+degrades player stats to "skipped" rather than aborting.
 """
 
+import logging
 import os
 import time
 
@@ -25,6 +26,8 @@ from src.db.connection import get_connection
 BASE_URL = "https://api.balldontlie.io/v1"
 REQUEST_DELAY_SECONDS = 0.5
 SOURCE_NAME = "balldontlie"
+
+log = logging.getLogger("balldontlie_source")
 
 
 def _headers():
@@ -83,9 +86,23 @@ def fetch_game_stats(game_id: int):
 def persist_season(season: int, start_date: str = None, end_date: str = None, db_path=None):
     """Pull games + player box scores (optionally limited to a recent
     date window) and write games / player_game_stats rows.
+
+    Commits after each game's row (not just once at the end) so partial
+    progress survives if a later game's request fails -- the first live
+    run lost every game it had already fetched because the whole
+    function only committed once, after an uncaught exception on a
+    later game's /stats call.
+
+    If /stats comes back 401/403 (see module docstring -- looks like a
+    tier restriction, not a bad key), player stats are skipped for the
+    rest of THIS call rather than retried per game and logged once, not
+    once per game -- games/scores still get written either way.
     """
     conn = get_connection(db_path) if db_path else get_connection()
     games = fetch_all_games(season, start_date=start_date, end_date=end_date)
+
+    stats_available = True
+    stats_skipped = 0
 
     for g in games:
         home_team = g["home_team"]["abbreviation"]
@@ -120,7 +137,28 @@ def persist_season(season: int, start_date: str = None, end_date: str = None, db
             ),
         )
 
-        stats = fetch_game_stats(g["id"])
+        conn.commit()  # games row survives even if this game's stats call fails below
+
+        if stats_available:
+            try:
+                stats = fetch_game_stats(g["id"])
+            except requests.exceptions.HTTPError as exc:
+                status = exc.response.status_code if exc.response is not None else None
+                if status in (401, 403):
+                    log.warning(
+                        "balldontlie /stats returned %s (games endpoint works fine with "
+                        "the same key) -- likely a free-tier restriction, not a bad key. "
+                        "Skipping player stats for the rest of this run.", status,
+                    )
+                    stats_available = False
+                else:
+                    log.warning("balldontlie stats fetch failed for game %s: %s", g["id"], exc)
+                stats_skipped += 1
+                continue
+        else:
+            stats_skipped += 1
+            continue
+
         for s in stats:
             team_abbr = s["team"]["abbreviation"]
             is_home = team_abbr == home_team
@@ -142,9 +180,11 @@ def persist_season(season: int, start_date: str = None, end_date: str = None, db
                     s.get("turnover"), s.get("pf"),
                 ),
             )
+        conn.commit()
 
-    conn.commit()
     conn.close()
+    if stats_skipped:
+        log.info("balldontlie: skipped player stats for %d/%d game(s)", stats_skipped, len(games))
 
 
 def _parse_minutes(min_str):

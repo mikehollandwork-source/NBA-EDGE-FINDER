@@ -4,30 +4,42 @@ Primary source for detailed box scores and advanced stats (off/def
 rating, pace, possessions) needed for the strength-of-schedule and
 Stats-signal calculations.
 
-Confirmed against real nba_api usage: a full-season LeagueGameFinder
-call (no date filter, ~1,230 games in one response) timed out against
-nba_api's 30s default on the first live run of the backfill workflow
-(requests.exceptions.ReadTimeout after exactly 30s). Every endpoint
-class here takes an explicit `timeout` kwarg (verified against
-nba_api's actual __init__ signatures, not assumed) -- NBA_API_TIMEOUT
-below overrides the default, and _with_retries() retries transient
-timeouts/connection errors with backoff rather than letting one slow
-request kill the whole backfill.
+Confirmed against real nba_api usage across two live backfill attempts:
+  1. A full-season LeagueGameFinder call (no date filter, ~1,230 games
+     in one response) timed out against nba_api's 30s default
+     (requests.exceptions.ReadTimeout after exactly 30s).
+  2. Raising the timeout to 90s and adding retries (below) STILL wasn't
+     enough for the full-season call -- it timed out on all 3 retries
+     (~5 minutes total) on the second attempt. The unfiltered call
+     itself is just too heavy for stats.nba.com to serve reliably, not
+     a timeout-tuning problem.
+
+Fixed by fetching in <=1-month chunks (persist_season, when no
+date_from/date_to is given, chunks the full season internally) instead
+of one unfiltered call -- each chunk is far lighter, independently
+retried, and a chunk that still fails after retries is skipped (logged)
+rather than taking down the whole backfill.
+
+Every endpoint class here takes an explicit `timeout` kwarg (verified
+against nba_api's actual __init__ signatures, not assumed) --
+NBA_API_TIMEOUT below overrides the 30s default, and _with_retries()
+retries transient timeouts/connection errors with backoff.
 
 Column/field names are still otherwise best-effort against nba_api's
 documented shapes and may need adjustment once real data comes back.
 """
 
+import datetime as dt
 import logging
 import time
 
+import pandas as pd
 import requests
 
 from src.db.connection import get_connection
 
 REQUEST_DELAY_SECONDS = 0.7
-NBA_API_TIMEOUT = 90       # nba_api's own default (30s) proved too short for a
-                          # full-season LeagueGameFinder call on the first live run
+NBA_API_TIMEOUT = 90
 MAX_RETRIES = 3
 RETRY_BACKOFF_SECONDS = 5
 SOURCE_NAME = "nba_api"
@@ -81,6 +93,44 @@ def fetch_season_team_game_log(season: str, date_from: str = None, date_to: str 
     ))
     _sleep()
     return finder.get_data_frames()[0]
+
+
+def _season_date_bounds(season: str) -> tuple[str, str]:
+    """NBA season 'YYYY-YY' -> (Oct 1, Jun 30) as MM/DD/YYYY strings."""
+    start_year = int(season[:4])
+    return f"10/01/{start_year}", f"06/30/{start_year + 1}"
+
+
+def _month_chunks(date_from: str, date_to: str):
+    """Yield (chunk_from, chunk_to) MM/DD/YYYY pairs, each <=1 calendar month."""
+    cursor = dt.datetime.strptime(date_from, "%m/%d/%Y")
+    end = dt.datetime.strptime(date_to, "%m/%d/%Y")
+    while cursor <= end:
+        next_month_start = (cursor.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
+        chunk_end = min(end, next_month_start - dt.timedelta(days=1))
+        yield cursor.strftime("%m/%d/%Y"), chunk_end.strftime("%m/%d/%Y")
+        cursor = chunk_end + dt.timedelta(days=1)
+
+
+def fetch_season_team_log_chunked(season: str, date_from: str = None, date_to: str = None) -> pd.DataFrame:
+    """Team game log for the range, fetched in <=1-month chunks rather
+    than one unfiltered call -- a full-season LeagueGameFinder call
+    proved too heavy for stats.nba.com to reliably serve even with a
+    90s timeout and retries (see module docstring). Defaults to the
+    full season's Oct-Jun window when no range is given. A chunk that
+    still fails after _with_retries()'s attempts is logged and skipped
+    -- partial data beats no data for a one-time backfill."""
+    if date_from is None and date_to is None:
+        date_from, date_to = _season_date_bounds(season)
+
+    frames = []
+    for chunk_from, chunk_to in _month_chunks(date_from, date_to):
+        try:
+            frames.append(fetch_season_team_game_log(season, chunk_from, chunk_to))
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError) as exc:
+            log.error("nba_api chunk %s-%s failed after retries, skipping: %s",
+                     chunk_from, chunk_to, exc)
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
 
 
 def fetch_game_boxscore_traditional(game_id: str):
@@ -273,12 +323,15 @@ def persist_season(season: str, date_from: str = None, date_to: str = None, db_p
 
     Full-season calls (~1,230 games) are meant for a one-time backfill;
     the hourly job should pass date_from/date_to for a short recent
-    window instead, since LeagueGameFinder itself is one call regardless
-    of range -- it's the per-game boxscore calls that scale with volume
-    (traditional + advanced + officials = 3 calls per NEW game).
+    window instead. Either way this goes through
+    fetch_season_team_log_chunked(), which fetches in <=1-month pieces
+    rather than one unfiltered call -- the per-game boxscore calls are
+    what actually scale with game volume (traditional + advanced +
+    officials = 3 calls per NEW game), the team log itself is now
+    chunked specifically to avoid the whole-season timeout.
     """
     conn = get_connection(db_path) if db_path else get_connection()
-    team_log = fetch_season_team_game_log(season, date_from, date_to)
+    team_log = fetch_season_team_log_chunked(season, date_from, date_to)
 
     # LeagueGameFinder gives one row per team per game (two rows share a
     # game_id) -- group them so home/away and both scores can be set

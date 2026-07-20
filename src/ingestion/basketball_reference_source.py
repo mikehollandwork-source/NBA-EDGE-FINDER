@@ -5,11 +5,16 @@ cross-check source. No official rate limit is published; be
 conservative (delay between requests, and cache pages locally if this
 starts running frequently) to avoid getting blocked.
 
-NOT YET TESTED against live data -- basketball-reference.com is
-currently blocked by this environment's egress policy. Table structure
-below (ids 'schedule', 'tgl_basic') reflects the site's known layout,
-but Basketball-Reference does change table ids/columns occasionally --
-verify once network access is available.
+Confirmed against the real installed pandas version (3.0.3): pd.read_html
+no longer accepts a bare HTML string -- it tries to open() the string
+AS A FILE PATH and raises FileNotFoundError. Every call here wraps the
+HTML in io.StringIO() first, verified locally against real pandas
+behavior (not assumed) after this broke the first live backfill run.
+
+Table structure (ids 'schedule', 'tgl_basic') otherwise reflects the
+site's known layout, but Basketball-Reference does change table
+ids/columns occasionally -- still worth spot-checking against real
+output.
 
 IMPORTANT cross-source caveat: Basketball-Reference has its own game
 ids (date + home team, e.g. '202602010LAL') and its own team
@@ -19,6 +24,7 @@ reconciliation must match games by (date, home_team, away_team) after
 normalizing abbreviations through TEAM_ABBR_TO_NBA below, not by id.
 """
 
+import io
 import time
 
 import pandas as pd
@@ -62,7 +68,7 @@ def fetch_month_schedule(season_end_year: int, month: str) -> pd.DataFrame:
         html = _get(url)
     except requests.HTTPError:
         return pd.DataFrame()
-    tables = pd.read_html(html, attrs={"id": "schedule"})
+    tables = pd.read_html(io.StringIO(html), attrs={"id": "schedule"})
     return tables[0] if tables else pd.DataFrame()
 
 
@@ -77,7 +83,7 @@ def fetch_team_game_log(team_abbr_bref: str, season_end_year: int) -> pd.DataFra
     """Team's full game log (basic stats) for the season."""
     url = f"{BASE_URL}/teams/{team_abbr_bref}/{season_end_year}/gamelog/"
     html = _get(url)
-    tables = pd.read_html(html, attrs={"id": "tgl_basic"})
+    tables = pd.read_html(io.StringIO(html), attrs={"id": "tgl_basic"})
     return tables[0] if tables else pd.DataFrame()
 
 
