@@ -445,7 +445,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "WAS",
         "actual_winner": "PHI",
-        "edge": 0.327271364962874,
+        "edge": 0.32727136678370833,
         "units": -1.0
       },
       {
@@ -453,7 +453,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "CHA",
         "actual_winner": "MIA",
-        "edge": -0.4118363794271142,
+        "edge": -0.41183637988740557,
         "units": -1.0
       },
       {
@@ -461,7 +461,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "NYK",
         "actual_winner": "MIL",
-        "edge": -0.38160069482687964,
+        "edge": -0.3816006936686373,
         "units": -1.0
       },
       {
@@ -469,7 +469,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.49090848205642856,
+        "edge": 0.49090847964937434,
         "units": 0.23529411764705882
       },
       {
@@ -477,7 +477,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "LAC",
         "actual_winner": "GSW",
-        "edge": -0.558497507535773,
+        "edge": -0.5584975089425226,
         "units": -1.0
       },
       {
@@ -485,7 +485,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": 0.4202231259227961,
+        "edge": 0.4202231259833805,
         "units": 1.4
       },
       {
@@ -493,7 +493,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "ORL",
         "actual_winner": "DET",
-        "edge": -0.007600229220856741,
+        "edge": -0.0076002285559942425,
         "units": -1.0
       },
       {
@@ -501,7 +501,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BKN",
         "actual_winner": "ATL",
-        "edge": 0.1850485436078778,
+        "edge": 0.18504854335520315,
         "units": -1.0
       },
       {
@@ -509,7 +509,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": -0.11581013138217028,
+        "edge": -0.11581013216383024,
         "units": 0.46511627906976744
       },
       {
@@ -517,7 +517,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "CHI",
         "actual_winner": "CHI",
-        "edge": 0.7558513360492148,
+        "edge": 0.7558513398709401,
         "units": 0.5714285714285714
       },
       {
@@ -525,7 +525,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "IND",
         "actual_winner": "DAL",
-        "edge": -0.25135996178205,
+        "edge": -0.25135995995797067,
         "units": -1.0
       },
       {
@@ -533,7 +533,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "DEN",
         "actual_winner": "DEN",
-        "edge": 0.9177933163374611,
+        "edge": 0.9177933167874065,
         "units": 0.15384615384615385
       },
       {
@@ -541,7 +541,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "UTA",
         "actual_winner": "POR",
-        "edge": 0.44164742700174187,
+        "edge": 0.44164742801401635,
         "units": -1.0
       },
       {
@@ -549,7 +549,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": -0.3556843949719284,
+        "edge": -0.3556843945584453,
         "units": 2.4
       },
       {
@@ -557,7 +557,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "MEM",
         "actual_winner": "MEM",
-        "edge": -0.24689514994668094,
+        "edge": -0.24689514849061373,
         "units": 0.7692307692307693
       },
       {
@@ -565,7 +565,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "CHA",
         "actual_winner": "ORL",
-        "edge": 0.42966702591017664,
+        "edge": 0.42966702896705916,
         "units": -1.0
       },
       {
@@ -573,7 +573,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "GSW",
         "actual_winner": "MIL",
-        "edge": -0.0808619641881076,
+        "edge": -0.0808619637884137,
         "units": -1.0
       },
       {
@@ -581,7 +581,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.41463764713869194,
+        "edge": 0.4146376469165771,
         "units": 0.07142857142857142
       },
       {
@@ -589,7 +589,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "SAS",
         "actual_winner": "SAS",
-        "edge": 0.7208107862524125,
+        "edge": 0.7208107852535907,
         "units": 0.4444444444444444
       },
       {
@@ -597,7 +597,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "IND",
         "actual_winner": "ATL",
-        "edge": 0.14381863439016457,
+        "edge": 0.14381863476860945,
         "units": -1.0
       },
       {
@@ -605,7 +605,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "PHI",
         "actual_winner": "BOS",
-        "edge": 0.2576057323905323,
+        "edge": 0.2576057319339434,
         "units": -1.0
       },
       {
@@ -613,7 +613,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "TOR",
         "actual_winner": "TOR",
-        "edge": -0.03147611035732378,
+        "edge": -0.03147611077022511,
         "units": 1.6
       },
       {
@@ -621,7 +621,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "CHI",
         "actual_winner": "CHI",
-        "edge": 0.058408039267488665,
+        "edge": 0.058408041785889986,
         "units": 1.65
       },
       {
@@ -629,7 +629,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": -0.042158990644646656,
+        "edge": -0.042158989169531154,
         "units": 0.7407407407407407
       },
       {
@@ -637,7 +637,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "UTA",
         "actual_winner": "PHX",
-        "edge": -0.47609161394378485,
+        "edge": -0.47609161279115086,
         "units": -1.0
       },
       {
@@ -645,7 +645,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "DEN",
         "actual_winner": "POR",
-        "edge": -0.19379414520270133,
+        "edge": -0.19379414546607143,
         "units": -1.0
       },
       {
@@ -653,7 +653,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "LAC",
         "actual_winner": "LAC",
-        "edge": 0.6431256077517823,
+        "edge": 0.6431256081366118,
         "units": 0.15384615384615385
       },
       {
@@ -661,7 +661,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "SAC",
         "actual_winner": "SAC",
-        "edge": -0.06504847377151533,
+        "edge": -0.06504847150307842,
         "units": 2.0
       },
       {
@@ -669,7 +669,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "CHA",
         "actual_winner": "MIN",
-        "edge": 0.2800680240085859,
+        "edge": 0.2800680252657428,
         "units": -1.0
       },
       {
@@ -677,7 +677,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "GSW",
         "actual_winner": "IND",
-        "edge": -0.18896394065908428,
+        "edge": -0.18896394183390053,
         "units": -1.0
       },
       {
@@ -685,7 +685,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "WAS",
         "actual_winner": "ORL",
-        "edge": 0.5213042990549391,
+        "edge": 0.5213042982549677,
         "units": -1.0
       },
       {
@@ -693,7 +693,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": -0.7292940178820606,
+        "edge": -0.7292940187263031,
         "units": 0.5128205128205128
       },
       {
@@ -701,7 +701,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": 0.3722538750311822,
+        "edge": 0.3722538758482266,
         "units": 0.36363636363636365
       },
       {
@@ -709,7 +709,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.8107523441865807,
+        "edge": 0.8107523438607391,
         "units": 0.125
       },
       {
@@ -717,7 +717,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "BKN",
         "actual_winner": "PHI",
-        "edge": 0.2785040076817884,
+        "edge": 0.2785040060605089,
         "units": -1.0
       },
       {
@@ -725,7 +725,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "UTA",
         "actual_winner": "CHA",
-        "edge": -0.6149273161583858,
+        "edge": -0.6149273176274331,
         "units": -1.0
       },
       {
@@ -733,7 +733,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "ATL",
         "actual_winner": "CLE",
-        "edge": -0.02467747025929428,
+        "edge": -0.02467747069128859,
         "units": -1.0
       },
       {
@@ -741,7 +741,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "TOR",
         "actual_winner": "TOR",
-        "edge": 0.20795591433524624,
+        "edge": 0.2079559155544991,
         "units": 0.5263157894736842
       },
       {
@@ -749,7 +749,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "NYK",
         "actual_winner": "NYK",
-        "edge": 0.15826595714062477,
+        "edge": 0.15826595788680953,
         "units": 0.3448275862068966
       },
       {
@@ -757,7 +757,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "SAS",
         "actual_winner": "PHX",
-        "edge": -0.4172185512192692,
+        "edge": -0.417218548983765,
         "units": -1.0
       },
       {
@@ -765,7 +765,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": 0.1035797287164042,
+        "edge": 0.10357973087965971,
         "units": 0.5128205128205128
       },
       {
@@ -773,7 +773,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -0.44834423391838807,
+        "edge": -0.44834423613417135,
         "units": 0.2222222222222222
       },
       {
@@ -781,7 +781,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIL",
         "actual_winner": "MIL",
-        "edge": -0.07234218088554738,
+        "edge": -0.07234218024418149,
         "units": 0.4
       },
       {
@@ -789,7 +789,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "UTA",
         "actual_winner": "UTA",
-        "edge": -0.3199434104050416,
+        "edge": -0.3199434068348696,
         "units": 3.8
       },
       {
@@ -797,7 +797,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "NYK",
         "actual_winner": "NYK",
-        "edge": 0.05926835639537603,
+        "edge": 0.05926835481967796,
         "units": 0.125
       },
       {
@@ -805,7 +805,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": 0.6728730748326952,
+        "edge": 0.6728730759070318,
         "units": 0.125
       },
       {
@@ -813,7 +813,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": -0.7438521996823013,
+        "edge": -0.743852202860221,
         "units": 0.5405405405405406
       }
     ]
@@ -2117,7 +2117,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": 0.22628609356893248,
+        "edge": 0.2262860935689326,
         "units": 1.4
       },
       {
@@ -2205,7 +2205,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "GSW",
         "actual_winner": "MIL",
-        "edge": -0.22298026733894016,
+        "edge": -0.22298026733894027,
         "units": -1.0
       },
       {
@@ -2213,7 +2213,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.8641228713901496,
+        "edge": 0.8641228713901499,
         "units": 0.07142857142857142
       },
       {
@@ -2245,7 +2245,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "CLE",
         "actual_winner": "TOR",
-        "edge": 0.1396740231498914,
+        "edge": 0.13967402314989158,
         "units": -1.0
       },
       {
@@ -2293,7 +2293,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "MIL",
         "actual_winner": "SAC",
-        "edge": 0.21664218253140288,
+        "edge": 0.21664218253140272,
         "units": -1.0
       },
       {
@@ -2405,7 +2405,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -0.33652238984246047,
+        "edge": -0.3365223898424606,
         "units": 0.2222222222222222
       },
       {
@@ -2413,7 +2413,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIL",
         "actual_winner": "MIL",
-        "edge": -0.07928137119738422,
+        "edge": -0.07928137119738436,
         "units": 0.4
       },
       {
@@ -2437,7 +2437,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": 1.0471887785140832,
+        "edge": 1.0471887785140834,
         "units": 0.125
       },
       {
@@ -2951,7 +2951,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BKN",
         "actual_winner": "ATL",
-        "edge": 0.15568952336013375,
+        "edge": 0.15568952336013392,
         "units": -1.0
       },
       {
@@ -2975,7 +2975,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "IND",
         "actual_winner": "DAL",
-        "edge": -0.4751537310967751,
+        "edge": -0.47515373109677517,
         "units": -1.0
       },
       {
@@ -3015,7 +3015,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "CHA",
         "actual_winner": "ORL",
-        "edge": 0.5287579970871907,
+        "edge": 0.528757997087191,
         "units": -1.0
       },
       {
@@ -3055,7 +3055,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": -0.13819527239890866,
+        "edge": -0.1381952723989088,
         "units": 0.8
       },
       {
@@ -3087,7 +3087,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "UTA",
         "actual_winner": "PHX",
-        "edge": -0.4218382522928821,
+        "edge": -0.42183825229288224,
         "units": -1.0
       },
       {
@@ -3191,7 +3191,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "MEM",
         "actual_winner": "TOR",
-        "edge": -0.02353201454726328,
+        "edge": -0.023532014547263364,
         "units": -1.0
       },
       {
@@ -3199,7 +3199,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "CHI",
         "actual_winner": "NYK",
-        "edge": -0.06122363834507921,
+        "edge": -0.06122363834507932,
         "units": -1.0
       },
       {
@@ -3207,7 +3207,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "SAS",
         "actual_winner": "PHX",
-        "edge": -0.6966132059315038,
+        "edge": -0.6966132059315039,
         "units": -1.0
       },
       {
@@ -3215,7 +3215,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": 0.07348544959052933,
+        "edge": 0.07348544959052922,
         "units": 0.5128205128205128
       },
       {
@@ -3223,7 +3223,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -0.625454843009834,
+        "edge": -0.6254548430098341,
         "units": 0.2222222222222222
       },
       {
@@ -3714,7 +3714,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "PHI",
         "actual_winner": "PHI",
-        "edge": -0.11545202811427507,
+        "edge": -0.11545202811427524,
         "units": 0.5128205128205128
       },
       {
@@ -3722,7 +3722,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "CHA",
         "actual_winner": "MIA",
-        "edge": -0.5829497872782812,
+        "edge": -0.5829497872782808,
         "units": -1.0
       },
       {
@@ -3730,7 +3730,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "NYK",
         "actual_winner": "MIL",
-        "edge": -0.22189318354566004,
+        "edge": -0.22189318354565965,
         "units": -1.0
       },
       {
@@ -3738,7 +3738,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.6956755348705151,
+        "edge": 0.6956755348705158,
         "units": 0.23529411764705882
       },
       {
@@ -3746,7 +3746,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "LAC",
         "actual_winner": "GSW",
-        "edge": -0.10370651703047867,
+        "edge": -0.10370651703047828,
         "units": -1.0
       },
       {
@@ -3754,7 +3754,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": 0.2316823674823414,
+        "edge": 0.23168236748234206,
         "units": 1.4
       },
       {
@@ -3762,7 +3762,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "ORL",
         "actual_winner": "DET",
-        "edge": -0.019452845969098714,
+        "edge": -0.01945284596909791,
         "units": -1.0
       },
       {
@@ -3770,7 +3770,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BKN",
         "actual_winner": "ATL",
-        "edge": 0.07283970415334079,
+        "edge": 0.07283970415334146,
         "units": -1.0
       },
       {
@@ -3786,7 +3786,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "CHI",
         "actual_winner": "CHI",
-        "edge": 0.5701361479883383,
+        "edge": 0.5701361479883387,
         "units": 0.5714285714285714
       },
       {
@@ -3794,7 +3794,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "IND",
         "actual_winner": "DAL",
-        "edge": -0.13735178908879414,
+        "edge": -0.13735178908879386,
         "units": -1.0
       },
       {
@@ -3802,7 +3802,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "DEN",
         "actual_winner": "DEN",
-        "edge": 0.9010107520032478,
+        "edge": 0.9010107520032484,
         "units": 0.15384615384615385
       },
       {
@@ -3810,7 +3810,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "UTA",
         "actual_winner": "POR",
-        "edge": 0.8410981688978932,
+        "edge": 0.8410981688978939,
         "units": -1.0
       },
       {
@@ -3818,7 +3818,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": -0.3571518603454595,
+        "edge": -0.3571518603454592,
         "units": 2.4
       },
       {
@@ -3826,7 +3826,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "MEM",
         "actual_winner": "MEM",
-        "edge": -0.21964309813619035,
+        "edge": -0.21964309813618946,
         "units": 0.7692307692307693
       },
       {
@@ -3834,7 +3834,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "CHA",
         "actual_winner": "ORL",
-        "edge": 0.628143095823619,
+        "edge": 0.6281430958236203,
         "units": -1.0
       },
       {
@@ -3842,7 +3842,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "GSW",
         "actual_winner": "MIL",
-        "edge": -0.2388306409746795,
+        "edge": -0.2388306409746791,
         "units": -1.0
       },
       {
@@ -3850,7 +3850,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.8695479820325525,
+        "edge": 0.8695479820325529,
         "units": 0.07142857142857142
       },
       {
@@ -3858,7 +3858,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "SAS",
         "actual_winner": "SAS",
-        "edge": 0.6008521103154957,
+        "edge": 0.600852110315496,
         "units": 0.4444444444444444
       },
       {
@@ -3866,7 +3866,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "IND",
         "actual_winner": "ATL",
-        "edge": 0.15738177419255545,
+        "edge": 0.15738177419255572,
         "units": -1.0
       },
       {
@@ -3874,7 +3874,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "PHI",
         "actual_winner": "BOS",
-        "edge": 0.2935368238206795,
+        "edge": 0.29353682382067964,
         "units": -1.0
       },
       {
@@ -3882,7 +3882,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "CLE",
         "actual_winner": "TOR",
-        "edge": 0.17018484591339456,
+        "edge": 0.1701848459133956,
         "units": -1.0
       },
       {
@@ -3890,7 +3890,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "CHI",
         "actual_winner": "CHI",
-        "edge": 0.3328406349793729,
+        "edge": 0.33284063497937305,
         "units": 1.65
       },
       {
@@ -3898,7 +3898,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "MEM",
         "actual_winner": "LAL",
-        "edge": 0.01376548708916372,
+        "edge": 0.013765487089164119,
         "units": -1.0
       },
       {
@@ -3906,7 +3906,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "UTA",
         "actual_winner": "PHX",
-        "edge": -0.6928349332977379,
+        "edge": -0.6928349332977377,
         "units": -1.0
       },
       {
@@ -3914,7 +3914,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "DEN",
         "actual_winner": "POR",
-        "edge": -0.4825777051356352,
+        "edge": -0.48257770513563464,
         "units": -1.0
       },
       {
@@ -3922,7 +3922,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "LAC",
         "actual_winner": "LAC",
-        "edge": 0.5277306960900996,
+        "edge": 0.5277306960901007,
         "units": 0.15384615384615385
       },
       {
@@ -3930,7 +3930,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "MIL",
         "actual_winner": "SAC",
-        "edge": 0.23038593233429955,
+        "edge": 0.23038593233430033,
         "units": -1.0
       },
       {
@@ -3938,7 +3938,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "CHA",
         "actual_winner": "MIN",
-        "edge": 0.6856237002026304,
+        "edge": 0.6856237002026311,
         "units": -1.0
       },
       {
@@ -3946,7 +3946,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "GSW",
         "actual_winner": "IND",
-        "edge": -0.58017199161207,
+        "edge": -0.5801719916120698,
         "units": -1.0
       },
       {
@@ -3954,7 +3954,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "WAS",
         "actual_winner": "ORL",
-        "edge": 0.05890078505327195,
+        "edge": 0.05890078505327234,
         "units": -1.0
       },
       {
@@ -3962,7 +3962,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": -0.40954161951561874,
+        "edge": -0.40954161951561807,
         "units": 0.5128205128205128
       },
       {
@@ -3970,7 +3970,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": 0.7857874167118764,
+        "edge": 0.7857874167118772,
         "units": 0.36363636363636365
       },
       {
@@ -3978,7 +3978,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 1.041789132203633,
+        "edge": 1.0417891322036335,
         "units": 0.125
       },
       {
@@ -3986,7 +3986,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "PHI",
         "actual_winner": "PHI",
-        "edge": -0.20175293032643887,
+        "edge": -0.2017529303264386,
         "units": 0.5128205128205128
       },
       {
@@ -3994,7 +3994,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "UTA",
         "actual_winner": "CHA",
-        "edge": -0.12997946939581861,
+        "edge": -0.12997946939581817,
         "units": -1.0
       },
       {
@@ -4002,7 +4002,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "CLE",
         "actual_winner": "CLE",
-        "edge": 0.10065607756332326,
+        "edge": 0.10065607756332393,
         "units": 0.4166666666666667
       },
       {
@@ -4010,7 +4010,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "MEM",
         "actual_winner": "TOR",
-        "edge": -0.2569644555744848,
+        "edge": -0.25696445557448466,
         "units": -1.0
       },
       {
@@ -4018,7 +4018,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "CHI",
         "actual_winner": "NYK",
-        "edge": -0.33566447967475915,
+        "edge": -0.3356644796747585,
         "units": -1.0
       },
       {
@@ -4026,7 +4026,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "SAS",
         "actual_winner": "PHX",
-        "edge": -0.48040689832982425,
+        "edge": -0.4804068983298236,
         "units": -1.0
       },
       {
@@ -4034,7 +4034,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "MIA",
         "actual_winner": "LAL",
-        "edge": -0.06137277508854072,
+        "edge": -0.06137277508854061,
         "units": -1.0
       },
       {
@@ -4042,7 +4042,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -0.32970338963077145,
+        "edge": -0.329703389630771,
         "units": 0.2222222222222222
       },
       {
@@ -4050,7 +4050,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIL",
         "actual_winner": "MIL",
-        "edge": -0.07986140488004335,
+        "edge": -0.07986140488004309,
         "units": 0.4
       },
       {
@@ -4058,7 +4058,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "UTA",
         "actual_winner": "UTA",
-        "edge": -0.14080763083105446,
+        "edge": -0.14080763083105363,
         "units": 3.8
       },
       {
@@ -4066,7 +4066,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "NYK",
         "actual_winner": "NYK",
-        "edge": 0.3129505481259288,
+        "edge": 0.3129505481259297,
         "units": 0.125
       },
       {
@@ -4074,7 +4074,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": 1.0454025275117327,
+        "edge": 1.045402527511734,
         "units": 0.125
       },
       {
@@ -4082,7 +4082,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": -0.6550357448547323,
+        "edge": -0.6550357448547318,
         "units": 0.5405405405405406
       }
     ]
@@ -4538,7 +4538,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "WAS",
         "actual_winner": "PHI",
-        "edge": 0.3993258325664492,
+        "edge": 0.39954292355423787,
         "units": -1.0
       },
       {
@@ -4546,7 +4546,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "CHA",
         "actual_winner": "MIA",
-        "edge": -0.10821263629009917,
+        "edge": -0.10798308705762752,
         "units": -1.0
       },
       {
@@ -4554,7 +4554,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "NYK",
         "actual_winner": "MIL",
-        "edge": -0.8741149133381504,
+        "edge": -0.8742211278640073,
         "units": -1.0
       },
       {
@@ -4562,7 +4562,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.6146476857208294,
+        "edge": 0.6144524730688306,
         "units": 0.23529411764705882
       },
       {
@@ -4570,7 +4570,7 @@
         "game_date": "2025-10-28",
         "predicted_winner": "LAC",
         "actual_winner": "GSW",
-        "edge": -0.3923202691780454,
+        "edge": -0.3925334523619455,
         "units": -1.0
       },
       {
@@ -4578,7 +4578,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": 0.19561797828301197,
+        "edge": 0.1957171517112417,
         "units": 1.4
       },
       {
@@ -4586,7 +4586,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "ORL",
         "actual_winner": "DET",
-        "edge": -0.04889454327191947,
+        "edge": -0.048844655096449335,
         "units": -1.0
       },
       {
@@ -4594,7 +4594,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "BKN",
         "actual_winner": "ATL",
-        "edge": 0.2883541213790574,
+        "edge": 0.28836497746963846,
         "units": -1.0
       },
       {
@@ -4602,7 +4602,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": -0.08422390955920514,
+        "edge": -0.08403787365380594,
         "units": 0.46511627906976744
       },
       {
@@ -4610,7 +4610,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "CHI",
         "actual_winner": "CHI",
-        "edge": 0.8943661157284328,
+        "edge": 0.894218282438772,
         "units": 0.5714285714285714
       },
       {
@@ -4618,7 +4618,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "IND",
         "actual_winner": "DAL",
-        "edge": -0.28057161076888293,
+        "edge": -0.2805455588450687,
         "units": -1.0
       },
       {
@@ -4626,7 +4626,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "DEN",
         "actual_winner": "DEN",
-        "edge": 0.7964611988312271,
+        "edge": 0.7964168665495572,
         "units": 0.15384615384615385
       },
       {
@@ -4634,7 +4634,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "UTA",
         "actual_winner": "POR",
-        "edge": 0.45577331730550247,
+        "edge": 0.45604886981079695,
         "units": -1.0
       },
       {
@@ -4642,7 +4642,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": -0.5335200129727977,
+        "edge": -0.5333196640534283,
         "units": 2.4
       },
       {
@@ -4650,7 +4650,7 @@
         "game_date": "2025-10-29",
         "predicted_winner": "MEM",
         "actual_winner": "MEM",
-        "edge": -0.05664773085208685,
+        "edge": -0.056332451686312734,
         "units": 0.7692307692307693
       },
       {
@@ -4658,7 +4658,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "CHA",
         "actual_winner": "ORL",
-        "edge": 0.42450715507462117,
+        "edge": 0.42434732345925025,
         "units": -1.0
       },
       {
@@ -4666,7 +4666,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "GSW",
         "actual_winner": "MIL",
-        "edge": -0.31608275498387123,
+        "edge": -0.31595557300563337,
         "units": -1.0
       },
       {
@@ -4674,7 +4674,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.6731805175476115,
+        "edge": 0.6734537716471638,
         "units": 0.07142857142857142
       },
       {
@@ -4682,7 +4682,7 @@
         "game_date": "2025-10-30",
         "predicted_winner": "SAS",
         "actual_winner": "SAS",
-        "edge": 0.45232782714998665,
+        "edge": 0.4523026868519376,
         "units": 0.4444444444444444
       },
       {
@@ -4690,7 +4690,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "IND",
         "actual_winner": "ATL",
-        "edge": 0.4069607618981258,
+        "edge": 0.4071072820924742,
         "units": -1.0
       },
       {
@@ -4698,7 +4698,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "BOS",
         "actual_winner": "BOS",
-        "edge": -0.09669804124444054,
+        "edge": -0.09720686180291027,
         "units": 0.8
       },
       {
@@ -4706,7 +4706,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "CLE",
         "actual_winner": "TOR",
-        "edge": 0.7240428176972722,
+        "edge": 0.724095742478611,
         "units": -1.0
       },
       {
@@ -4714,7 +4714,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "NYK",
         "actual_winner": "CHI",
-        "edge": -0.3524091144287323,
+        "edge": -0.35225010154301195,
         "units": -1.0
       },
       {
@@ -4722,7 +4722,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "LAL",
         "actual_winner": "LAL",
-        "edge": -0.6127747882063023,
+        "edge": -0.6130803965576135,
         "units": 0.7407407407407407
       },
       {
@@ -4730,7 +4730,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "UTA",
         "actual_winner": "PHX",
-        "edge": -0.24327729622797245,
+        "edge": -0.24368619357826243,
         "units": -1.0
       },
       {
@@ -4738,7 +4738,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "DEN",
         "actual_winner": "POR",
-        "edge": -0.25898641943591205,
+        "edge": -0.25891696914828066,
         "units": -1.0
       },
       {
@@ -4746,7 +4746,7 @@
         "game_date": "2025-10-31",
         "predicted_winner": "LAC",
         "actual_winner": "LAC",
-        "edge": 0.6865773652129961,
+        "edge": 0.6860858430509527,
         "units": 0.15384615384615385
       },
       {
@@ -4754,7 +4754,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "MIL",
         "actual_winner": "SAC",
-        "edge": 0.18641308045624855,
+        "edge": 0.18666547027282643,
         "units": -1.0
       },
       {
@@ -4762,7 +4762,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -0.01694005751970873,
+        "edge": -0.016579192235945662,
         "units": 0.5263157894736842
       },
       {
@@ -4770,7 +4770,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "GSW",
         "actual_winner": "IND",
-        "edge": -0.40008084077203565,
+        "edge": -0.3999081408077808,
         "units": -1.0
       },
       {
@@ -4778,7 +4778,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "WAS",
         "actual_winner": "ORL",
-        "edge": 0.5152007725116097,
+        "edge": 0.5152423818721266,
         "units": -1.0
       },
       {
@@ -4786,7 +4786,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "BOS",
         "actual_winner": "HOU",
-        "edge": 0.1005621721729892,
+        "edge": 0.10119573218006965,
         "units": -1.0
       },
       {
@@ -4794,7 +4794,7 @@
         "game_date": "2025-11-01",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": 0.6029328203878481,
+        "edge": 0.6032455653644141,
         "units": 0.36363636363636365
       },
       {
@@ -4802,7 +4802,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "OKC",
         "actual_winner": "OKC",
-        "edge": 0.8321143705588285,
+        "edge": 0.831483996288277,
         "units": 0.125
       },
       {
@@ -4810,7 +4810,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "PHI",
         "actual_winner": "PHI",
-        "edge": -0.1695371624663399,
+        "edge": -0.17050036907056434,
         "units": 0.5128205128205128
       },
       {
@@ -4818,7 +4818,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "UTA",
         "actual_winner": "CHA",
-        "edge": -0.8799914823327837,
+        "edge": -0.8802231934900955,
         "units": -1.0
       },
       {
@@ -4826,7 +4826,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "CLE",
         "actual_winner": "CLE",
-        "edge": 0.5204886759199716,
+        "edge": 0.5206132437724454,
         "units": 0.4166666666666667
       },
       {
@@ -4834,7 +4834,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "MEM",
         "actual_winner": "TOR",
-        "edge": -0.20887110292866717,
+        "edge": -0.20904000958502475,
         "units": -1.0
       },
       {
@@ -4842,7 +4842,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "NYK",
         "actual_winner": "NYK",
-        "edge": 0.4003995225477037,
+        "edge": 0.4005048288270017,
         "units": 0.3448275862068966
       },
       {
@@ -4850,7 +4850,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "SAS",
         "actual_winner": "PHX",
-        "edge": -0.5154337618663274,
+        "edge": -0.5155866905686567,
         "units": -1.0
       },
       {
@@ -4858,7 +4858,7 @@
         "game_date": "2025-11-02",
         "predicted_winner": "MIA",
         "actual_winner": "LAL",
-        "edge": -0.10765782836944293,
+        "edge": -0.10751260105955418,
         "units": -1.0
       },
       {
@@ -4866,7 +4866,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIN",
         "actual_winner": "MIN",
-        "edge": -1.028724280693668,
+        "edge": -1.0286818648562772,
         "units": 0.2222222222222222
       },
       {
@@ -4874,7 +4874,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "MIL",
         "actual_winner": "MIL",
-        "edge": -0.2909111967746388,
+        "edge": -0.29093896166187705,
         "units": 0.4
       },
       {
@@ -4882,7 +4882,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "BOS",
         "actual_winner": "UTA",
-        "edge": 0.46194886248114786,
+        "edge": 0.46192222432248464,
         "units": -1.0
       },
       {
@@ -4890,7 +4890,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "NYK",
         "actual_winner": "NYK",
-        "edge": 0.1957354160722111,
+        "edge": 0.19553971268385553,
         "units": 0.125
       },
       {
@@ -4898,7 +4898,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "HOU",
         "actual_winner": "HOU",
-        "edge": 0.4457874140188813,
+        "edge": 0.4458076187240268,
         "units": 0.125
       },
       {
@@ -4906,7 +4906,7 @@
         "game_date": "2025-11-03",
         "predicted_winner": "DET",
         "actual_winner": "DET",
-        "edge": -0.3453678580963481,
+        "edge": -0.3451778693960326,
         "units": 0.5405405405405406
       }
     ]
