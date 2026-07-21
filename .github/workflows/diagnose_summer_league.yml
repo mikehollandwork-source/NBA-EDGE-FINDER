@@ -1,0 +1,30 @@
+name: Diagnose Summer League + Pagination
+
+# One-off diagnostic, NOT part of the regular pipeline -- checks (1)
+# whether balldontlie's API uses cursor pagination (which would mean
+# every backfill so far silently read only the FIRST page of the season
+# -- exactly 100 games, the max page size), and whether the rest of the
+# 2025-26 season exists on the API; (2) whether ESPN/balldontlie carry
+# current Summer League games. See src/cli/diagnose_summer_league.py.
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        env:
+          BALLDONTLIE_API_KEY: ${{ secrets.BALLDONTLIE_API_KEY }}
+        run: python -m src.cli.diagnose_summer_league
