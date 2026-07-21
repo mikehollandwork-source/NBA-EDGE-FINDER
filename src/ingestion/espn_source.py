@@ -117,6 +117,102 @@ def lines(date: str) -> list[dict]:
     return out
 
 
+def historical_lines(date: str) -> list[dict]:
+    """Open + CLOSE moneylines for the date's games -- works for
+    COMPLETED games, which is the whole point: verified against a real
+    Final game (diagnose_espn_historical_odds.py, 2025-10-22 MIA@ORL)
+    that the per-event odds endpoint keeps serving after the game ends,
+    with explicit open/close/current blocks per team (home opened -380,
+    closed -340; away opened +290, closed +270). The 'ESPN BET' provider
+    item (priority 0) carries the close block; the 'Live Odds' item does
+    not, so prefer whichever item actually has a close."""
+    out: list[dict] = []
+    for e in _events(date):
+        data = _get(EVENT_ODDS.format(eid=e["eid"]))
+        items = (data or {}).get("items") or []
+        if not items:
+            continue
+        it = next((i for i in items
+                   if isinstance((i.get("homeTeamOdds") or {}).get("close"), dict)),
+                  items[0])
+        home, away = it.get("homeTeamOdds") or {}, it.get("awayTeamOdds") or {}
+        row = {
+            "away_abbr": e["away_abbr"], "home_abbr": e["home_abbr"],
+            "away_open": _american((away.get("open") or {}).get("moneyLine")),
+            "home_open": _american((home.get("open") or {}).get("moneyLine")),
+            "away_close": _american((away.get("close") or {}).get("moneyLine")),
+            "home_close": _american((home.get("close") or {}).get("moneyLine")),
+        }
+        if row["home_close"] is not None or row["home_open"] is not None:
+            out.append(row)
+        time.sleep(0.3)
+    log.info("espn historical: parsed %d game line(s) for %s", len(out), date)
+    return out
+
+
+def backfill_closing_odds(season: str, db_path=None) -> dict:
+    """Write opening + closing moneylines for every completed game in the
+    season that doesn't have a closing odds_snapshots row yet -- the
+    free replacement for SBR's bot-walled historical archive, since
+    ESPN's odds endpoint keeps serving open/close for past games (see
+    historical_lines). run_backtest._closing_moneyline reads any
+    line_type='closing' row, so backfilled games get real ROI."""
+    conn = get_connection(db_path) if db_path else get_connection()
+    dates = [r["game_date"] for r in conn.execute(
+        """SELECT DISTINCT game_date FROM games
+           WHERE season = ? AND status = 'final'
+             AND game_id NOT IN (
+                 SELECT game_id FROM odds_snapshots WHERE line_type = 'closing'
+             )
+           ORDER BY game_date""",
+        (season,),
+    ).fetchall()]
+
+    now = datetime.now(timezone.utc).isoformat()
+    opening_written, closing_written = 0, 0
+    for date in dates:
+        for row in historical_lines(date):
+            home, away = canon_abbr(row["home_abbr"]), canon_abbr(row["away_abbr"])
+            game = conn.execute(
+                "SELECT game_id FROM games WHERE home_team = ? AND away_team = ? AND game_date = ?",
+                (home, away, date),
+            ).fetchone()
+            if not game:
+                continue
+            game_id = game["game_id"]
+            if row["home_open"] is not None and not conn.execute(
+                "SELECT 1 FROM odds_snapshots WHERE game_id = ? AND line_type = 'opening' LIMIT 1",
+                (game_id,),
+            ).fetchone():
+                conn.execute(
+                    """INSERT INTO odds_snapshots
+                       (game_id, source, book, snapshot_time, line_type,
+                        home_moneyline, away_moneyline)
+                       VALUES (?, ?, 'espn', ?, 'opening', ?, ?)""",
+                    (game_id, SOURCE_NAME, now, row["home_open"], row["away_open"]),
+                )
+                opening_written += 1
+            if row["home_close"] is not None and not conn.execute(
+                "SELECT 1 FROM odds_snapshots WHERE game_id = ? AND line_type = 'closing' LIMIT 1",
+                (game_id,),
+            ).fetchone():
+                conn.execute(
+                    """INSERT INTO odds_snapshots
+                       (game_id, source, book, snapshot_time, line_type,
+                        home_moneyline, away_moneyline)
+                       VALUES (?, ?, 'espn', ?, 'closing', ?, ?)""",
+                    (game_id, SOURCE_NAME, now, row["home_close"], row["away_close"]),
+                )
+                closing_written += 1
+        conn.commit()  # per-date, so partial progress survives a later failure
+
+    conn.close()
+    log.info("espn historical backfill: %d opening + %d closing rows across %d date(s)",
+             opening_written, closing_written, len(dates))
+    return {"opening_written": opening_written, "closing_written": closing_written,
+            "dates_checked": len(dates)}
+
+
 def poll_and_snapshot(date: str, db_path=None) -> dict:
     """Fetch ESPN's open+current moneyline for the date's games and write
     odds_snapshots rows: the 'open' value once (as line_type='opening', on

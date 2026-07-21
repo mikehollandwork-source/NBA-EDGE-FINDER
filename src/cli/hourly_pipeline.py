@@ -100,6 +100,13 @@ def ingest_recent_results(db_path=None):
     # Actions). Only fetches box scores for games it doesn't already
     # have -- cheap to call every hour, most games already have data.
     basketball_reference_source.persist_season_boxscores(SEASON_LABEL, db_path=db_path)
+    # ESPN keeps serving open/close odds for COMPLETED games (verified
+    # live -- see espn_source.historical_lines), so grab the definitive
+    # closing line for any freshly-finished game that doesn't have one.
+    # Only queries games missing a closing row, so it's a no-op most
+    # hours; this is what makes settled-bet ROI exact rather than
+    # approximated from the last pre-tip 'live' snapshot.
+    espn_source.backfill_closing_odds(SEASON_LABEL, db_path=db_path)
 
 
 def snapshot_market_data(db_path=None):

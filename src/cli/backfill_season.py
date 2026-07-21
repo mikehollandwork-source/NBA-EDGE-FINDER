@@ -30,6 +30,7 @@ from dotenv import load_dotenv
 from src.ingestion import (
     balldontlie_source,
     basketball_reference_source,
+    espn_source,
     nba_api_source,
     sbr_historical_odds,
 )
@@ -74,6 +75,9 @@ def run(season: str, balldontlie_year: int, db_path=None, include_nba_api: bool 
         _step("nba_api season pull", nba_api_source.persist_season, season, db_path=db_path)
         log.info("nba_api: player bio (position/height reference)...")
         _step("nba_api player bio", nba_api_source.persist_player_bio, season, db_path=db_path)
+
+    log.info("espn: historical opening/closing odds for completed games (for backtest ROI)...")
+    _step("espn historical odds backfill", espn_source.backfill_closing_odds, season, db_path=db_path)
 
     log.info("Cross-checking sources...")
     _step("reconcile team stats", cross_check.reconcile_team_stats, db_path)
