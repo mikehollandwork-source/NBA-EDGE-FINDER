@@ -35,14 +35,21 @@ def _headers():
     return {"Authorization": api_key} if api_key else {}
 
 
-def fetch_games(season: int, page: int = 1, per_page: int = 100,
+def fetch_games(season: int, cursor: int = None, per_page: int = 100,
                  start_date: str = None, end_date: str = None):
     """Return one page of games for a season, e.g. season=2025 for 2025-26.
+
+    balldontlie uses CURSOR pagination now, not page numbers -- the meta
+    block carries {"next_cursor": <int>, "per_page": N} with NO
+    "next_page" field (verified live via diagnose_summer_league.py).
+    Pass the previous page's meta.next_cursor to get the next page.
 
     start_date/end_date ('YYYY-MM-DD') limit to a recent window instead
     of the whole season -- what the hourly job uses.
     """
-    params = {"seasons[]": season, "page": page, "per_page": per_page}
+    params = {"seasons[]": season, "per_page": per_page}
+    if cursor is not None:
+        params["cursor"] = cursor
     if start_date:
         params["start_date"] = start_date
     if end_date:
@@ -57,16 +64,28 @@ def fetch_games(season: int, page: int = 1, per_page: int = 100,
 
 
 def fetch_all_games(season: int, start_date: str = None, end_date: str = None):
-    """Paginate through fetch_games() and return all matching games."""
+    """Paginate through fetch_games() via cursor and return all matching
+    games.
+
+    This previously followed meta.next_page, a field balldontlie's API no
+    longer returns -- so the loop always stopped after page 1, silently
+    capping every full-season pull at the first 100 games (Oct 21 - Nov 3
+    only). Confirmed and fixed against the real cursor-based meta shape.
+    The MAX_PAGES cap is a safety valve: a full season is ~13 pages of
+    100, so 100 pages is far more than enough while still guaranteeing
+    termination if a malformed response ever kept returning a cursor."""
+    MAX_PAGES = 100
     games = []
-    page = 1
-    while True:
-        data = fetch_games(season, page=page, start_date=start_date, end_date=end_date)
+    cursor = None
+    for _ in range(MAX_PAGES):
+        data = fetch_games(season, cursor=cursor, start_date=start_date, end_date=end_date)
         games.extend(data["data"])
-        meta = data.get("meta", {})
-        if not meta.get("next_page"):
+        cursor = data.get("meta", {}).get("next_cursor")
+        if cursor is None:
             break
-        page = meta["next_page"]
+    else:
+        log.warning("balldontlie fetch_all_games hit MAX_PAGES=%d -- "
+                    "results may be truncated", MAX_PAGES)
     return games
 
 
