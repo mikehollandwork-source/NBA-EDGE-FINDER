@@ -1,0 +1,31 @@
+name: Diagnose ESPN Historical Odds
+
+# One-off diagnostic, NOT part of the regular pipeline -- checks whether
+# ESPN's per-event odds endpoint still serves odds (ideally with
+# open/close blocks) for COMPLETED games, which would let the backtest
+# backfill real historical opening/closing lines without SBR's
+# bot-protected archive. See src/cli/diagnose_espn_historical_odds.py.
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "A past date with completed games, YYYY-MM-DD"
+        default: "2025-10-22"
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run diagnostic probe
+        run: python -m src.cli.diagnose_espn_historical_odds --date "${{ github.event.inputs.date }}"
